@@ -1,0 +1,3 @@
+aside > * {
+  @apply block mb-4;
+}

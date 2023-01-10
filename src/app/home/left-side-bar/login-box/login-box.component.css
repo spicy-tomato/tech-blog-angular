@@ -1,0 +1,8 @@
+nav {
+  @apply bg-gray-50 rounded-lg;
+  box-shadow: 0 0 0 1px rgba(23, 23, 23, 0.05);
+}
+
+[nz-button] {
+  @apply rounded-md;
+}

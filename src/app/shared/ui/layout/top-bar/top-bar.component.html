@@ -1,0 +1,26 @@
+<header class="fixed top-0 left-0 right-0 bg-white z-10">
+  <div class="max-w-5xl h-nav-h mx-auto px-4 flex justify-between items-center">
+    <div class="h-10 flex">
+      <a class="h-full">
+        <img
+          nz-image
+          nzSrc="https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png"
+          alt="Logo"
+          class="h-full"
+        />
+      </a>
+      <div class="ml-4">
+        <nz-input-group [nzSuffix]="suffixIconSearch" nzSize="large">
+          <input nz-input type="text" placeholder="Search..." />
+        </nz-input-group>
+        <ng-template #suffixIconSearch>
+          <span nz-icon nzType="search"></span>
+        </ng-template>
+      </div>
+    </div>
+    <div>
+      <a nz-button nzType="text" nzSize="large" class="mr-2">Login</a>
+      <a nz-button nzSize="large">Create account</a>
+    </div>
+  </div>
+</header>

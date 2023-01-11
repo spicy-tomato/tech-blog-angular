@@ -1,0 +1,82 @@
+<article
+  *ngFor="let post of posts"
+  class="mb-2 rounded-md bg-white overflow-hidden"
+>
+  <a [routerLink]="post.url" class="block">
+    <div *ngIf="post.image">
+      <img [src]="post.image" [alt]="post.title" />
+    </div>
+    <div class="flex p-5">
+      <div class="mr-2">
+        <div class="w-8 h-8">
+          <img
+            [src]="post.author.image"
+            [alt]="post.author.name"
+            class="rounded-full"
+          />
+        </div>
+      </div>
+      <div class="-mt-2">
+        <tui-hosted-dropdown tuiDropdownHover [content]="dropdown">
+          <button tuiButton tuiHostedDropdownHost class="-ml-2 text-sm">
+            {{ post.author.name }}
+          </button>
+        </tui-hosted-dropdown>
+        <p class="text-xs">{{ post.createdAt | date : 'MMM d' }}</p>
+        <h3 class="mt-2 text-3xl font-bold hover:text-blue-800">
+          <a [routerLink]="post.url">{{ post.title }}</a>
+        </h3>
+        <div class="-ml-2 mt-1">
+          <button tuiButton *ngFor="let tag of post.tags">#{{ tag }}</button>
+        </div>
+        <div class="flex justify-between items-center mt-2">
+          <div class="left-buttons">
+            <button tuiButton icon="tuiIconHeart" class="-ml-2">
+              {{ post.reactionsCount }} Reactions
+            </button>
+            <button tuiButton icon="tuiIconComment">
+              {{ post.commentsCount }} Comments
+            </button>
+          </div>
+          <div class="flex items-center">
+            <p class="text-xs">{{ post.timeToRead }} min read</p>
+            <button
+              tuiIconButton
+              icon="tuiIconBookmark"
+              size="m"
+              class="ml-2"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+</article>
+
+<ng-template #dropdown>
+  <div
+    class="dropdown flex flex-col px-4 pb-4 border-t-[32px] border-t-blue-700"
+  >
+    <div class="-mt-4">Jerry</div>
+    <div>
+      <button tuiButton>Follow</button>
+    </div>
+    <div>Follow for dev, javascript</div>
+    <div>
+      <ul>
+        <li>
+          <div class="key">Work</div>
+          <div class="value">FPT Software</div>
+        </li>
+        <li>
+          <div class="key">Work</div>
+          <div class="value">FPT Software</div>
+        </li>
+        <li>
+          <div class="key">Work</div>
+          <div class="value">FPT Software</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</ng-template>

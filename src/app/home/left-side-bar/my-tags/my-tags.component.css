@@ -1,0 +1,3 @@
+[tuiIconButton] ::ng-deep .t-content {
+  @apply text-gray-800;
+}

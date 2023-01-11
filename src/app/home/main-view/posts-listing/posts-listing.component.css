@@ -1,0 +1,31 @@
+:host {
+  @apply block;
+}
+
+article {
+  box-shadow: 0 0 0 1px rgba(23, 23, 23, 0.1);
+}
+
+button {
+  @apply rounded-md;
+}
+
+button ::ng-deep .t-content {
+  @apply text-gray-800;
+}
+
+.left-buttons button {
+  @apply h-8;
+}
+
+.left-buttons button ::ng-deep .t-wrapper {
+  @apply px-3;
+}
+
+.dropdown > div:not(:first) {
+  @apply mt-4;
+} 
+
+.key {
+  @apply text-xs text-gray-700;
+}

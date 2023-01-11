@@ -1,0 +1,15 @@
+<nav>
+  <header class="flex justify-between items-center pl-4">
+    <h2 class="text-base text-gray-800 font-bold">My tags</h2>
+    <button tuiIconButton icon="tuiIconSettingsLarge"></button>
+  </header>
+  <tui-scrollbar class="max-h-[42vh]">
+    <ul>
+      <li *ngFor="let tag of myTags">
+        <a tuiButton [routerLink]="'/tags/' + tag" class="list-item w-full">
+          #{{ tag }}
+        </a>
+      </li>
+    </ul>
+  </tui-scrollbar>
+</nav>

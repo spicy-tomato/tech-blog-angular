@@ -1,0 +1,8 @@
+.list-item[tuiButton] .t-wrapper {
+  @apply !px-4;
+}
+.list-item[tuiButton] .t-wrapper .t-content {
+  @apply w-full inline-block font-normal text-gray-800;
+  @apply whitespace-nowrap overflow-hidden text-ellipsis text-left align-middle;
+  line-height: 44px;
+}

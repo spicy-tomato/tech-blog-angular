@@ -1,0 +1,11 @@
+[tuiButton] ::ng-deep .t-wrapper {
+  @apply !px-3;
+}
+
+[tuiButton] ::ng-deep .t-content {
+  @apply text-lg text-gray-800;
+}
+
+[tuiButton]:not(.active) ::ng-deep .t-content {
+  @apply font-normal;
+}

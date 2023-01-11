@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { IconConstant } from 'src/app/shared/utils/constants';
 
 @Component({
   selector: 'app-home-left-side-bar-social-media',
@@ -6,4 +7,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./social-media.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SocialMediaComponent {}
+export class SocialMediaComponent {
+  readonly IconConstant = IconConstant;
+}

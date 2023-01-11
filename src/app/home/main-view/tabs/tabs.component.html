@@ -1,0 +1,10 @@
+<nav>
+  <a
+    tuiButton
+    *ngFor="let urlButton of urlButtons"
+    [routerLink]="urlButton.url"
+    routerLinkActive="active"
+  >
+    {{ urlButton.label }}
+  </a>
+</nav>

@@ -1,8 +1,10 @@
 <nav class="text-base">
   <h2 class="pl-4 py-2 font-bold">Other</h2>
-  <ul nz-menu class="bg-inherit text-base">
-    <li nz-menu-item *ngFor="let item of menuItems" class="!m-0">
-      <a [routerLink]="item.url">{{ item.label }}</a>
+  <ul class="bg-inherit text-base">
+    <li *ngFor="let item of menuItems" class="!m-0">
+      <a tuiButton [routerLink]="item.url" class="list-item w-full">
+        {{ item.label }}
+      </a>
     </li>
   </ul>
 </nav>

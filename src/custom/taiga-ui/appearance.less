@@ -1,0 +1,31 @@
+@import '~@taiga-ui/core/styles/taiga-ui-local';
+
+/* Google button */
+[tuiWrapper][data-appearance='google'] {
+  @apply bg-[#db4437] text-white;
+
+  .wrapper-hover({
+    @apply bg-[#e57368];
+  });
+  .wrapper-active({
+    @apply bg-[#e57368];
+  });
+  .wrapper-disabled({
+    @apply bg-[#e57368];
+  });
+}
+
+/* Facebook button */
+[tuiWrapper][data-appearance='facebook'] {
+  @apply bg-[#3b5998] text-white;
+
+  .wrapper-hover({
+    @apply bg-[#8b9dc3];
+  });
+  .wrapper-active({
+    @apply bg-[#8b9dc3];
+  });
+  .wrapper-disabled({
+    @apply bg-[#dfe3ee];
+  });
+}

@@ -1,0 +1,54 @@
+<app-layout>
+  <section class="">
+    <div class="w-full m-auto p-6 bg-white rounded-md sm:w-[640px] sm:p-12">
+      <div class="mb-6 text-center">
+        <h1 class="mb-2 text-2xl font-bold md:text-3xl">
+          Welcome to DEV Community 👩‍💻👨‍💻
+        </h1>
+        <p class="text-base">
+          DEV Community 👩‍💻👨‍💻 is a community of 989,142 amazing developers
+        </p>
+      </div>
+
+      <div>
+        <button tuiButton appearance="google" size="m">
+          Sign up with Google
+        </button>
+        <button tuiButton appearance="facebook" size="m">
+          Sign up with Facebook
+        </button>
+      </div>
+
+      <div
+        class="relative my-4 text-sm text-center after:contents-[''] after:absolute after:top-1/2 after:w-full after:block after:border"
+      >
+        <span class="relative px-2 bg-white z-10">
+          Have a password? Continue with your email address
+        </span>
+      </div>
+
+      <form [formGroup]="form">
+        <div class="tui-form__row">
+          <label tuiLabel="Email">
+            <tui-input
+              formControlName="email"
+              [tuiTextfieldLabelOutside]="true"
+              tuiTextfieldSize="m"
+            >
+              <input tuiTextfield type="email" />
+            </tui-input>
+          </label>
+        </div>
+        <div class="tui-form__row">
+          <label tuiLabel="Password">
+            <tui-input-password
+              formControlName="password"
+              [tuiTextfieldLabelOutside]="true"
+              tuiTextfieldSize="m"
+            ></tui-input-password>
+          </label>
+        </div>
+      </form>
+    </div>
+  </section>
+</app-layout>

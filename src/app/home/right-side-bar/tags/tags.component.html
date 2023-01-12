@@ -1,0 +1,22 @@
+<section *ngFor="let tag of tagTopics">
+  <header>
+    <h3>
+      <a [routerLink]="'/t/' + tag.tag"> #{{ tag.tag }} </a>
+    </h3>
+  </header>
+  <div *ngFor="let post of tag.posts">
+    <a [routerLink]="post.url">
+      <div>{{ post.title }}</div>
+      <tui-tag
+        *ngIf="post.isNew; else comment"
+        value="New"
+        status="custom"
+        size="s"
+        class="bg-[rgb(252,211,77)]"
+      ></tui-tag>
+      <ng-template #comment>
+        <div class="text-gray-600">{{ post.commentsCount }} comments</div>
+      </ng-template>
+    </a>
+  </div>
+</section>

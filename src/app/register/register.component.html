@@ -1,0 +1,29 @@
+<app-layout>
+  <section class="text-center">
+    <div class="w-full m-auto p-6 bg-white rounded-md sm:w-[640px] sm:p-12">
+      <div class="mb-6">
+        <h1 class="mb-2 text-2xl font-bold md:text-3xl">
+          Welcome to DEV Community 👩‍💻👨‍💻
+        </h1>
+        <p class="text-base">
+          DEV Community 👩‍💻👨‍💻 is a community of 989,142 amazing developers
+        </p>
+      </div>
+      <div>
+        <button tuiButton appearance="google" size="m">
+          Sign up with Google
+        </button>
+        <button tuiButton appearance="facebook" size="m">
+          Sign up with Facebook
+        </button>
+      </div>
+      <div
+        class="relative my-4 text-sm after:contents-[''] after:absolute after:top-1/2 after:w-full after:block after:border"
+      >
+        <span class="relative px-2 bg-white z-10">
+          Already have an account? <a tuiLink routerLink="/login">Log in</a>.
+        </span>
+      </div>
+    </div>
+  </section>
+</app-layout>

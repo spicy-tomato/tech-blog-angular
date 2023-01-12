@@ -1,0 +1,36 @@
+aside > * ::ng-deep > section {
+  @apply bg-gray-50 rounded-md overflow-hidden;
+  box-shadow: 0 0 0 1px var(--card-secondary-border);
+}
+
+aside > *:not(:first-child) ::ng-deep > section {
+  @apply mt-4;
+}
+
+aside > * ::ng-deep > section > header {
+  @apply px-4 py-3 border-b;
+}
+
+aside > * ::ng-deep > section > header > h3 {
+  @apply text-xl font-bold;
+}
+
+aside > * ::ng-deep > section > div > a {
+  @apply block p-4;
+}
+
+aside > * ::ng-deep > section > div > a > :first-child {
+  @apply text-base;
+}
+
+aside > * ::ng-deep > section > div > a > :nth-child(2) {
+  @apply mt-1;
+}
+
+aside > * ::ng-deep > section a:not([tuiLink]):hover {
+  @apply text-blue-800;
+}
+
+aside > * ::ng-deep > section > div a:not([tuiLink]):hover {
+  @apply bg-white;
+}

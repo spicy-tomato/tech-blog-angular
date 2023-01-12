@@ -6,11 +6,17 @@ import {
   TuiDropdownModule,
   TuiHostedDropdownModule,
 } from '@taiga-ui/core';
+import { TuiTagModule } from '@taiga-ui/kit';
 import { MainViewComponent } from './main-view.component';
 import { PostsListingComponent } from './posts-listing/posts-listing.component';
 import { TabsComponent } from './tabs/tabs.component';
 
-const TAIGA_UI = [TuiButtonModule, TuiDropdownModule, TuiHostedDropdownModule];
+const TAIGA_UI = [
+  TuiButtonModule,
+  TuiDropdownModule,
+  TuiHostedDropdownModule,
+  TuiTagModule,
+];
 
 @NgModule({
   imports: [CommonModule, RouterModule, ...TAIGA_UI],

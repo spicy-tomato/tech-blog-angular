@@ -1,0 +1,15 @@
+<section>
+  <header class="flex justify-between items-center">
+    <h3>Listings</h3>
+    <a tuiLink routerLink="/listings">See all</a>
+  </header>
+  <div>
+    <a
+      *ngFor="let listing of listings"
+      [routerLink]="'/listings/' + listing.category + '/' + listing.id"
+    >
+      <div>{{ listing.title }}</div>
+      <div>{{ listing.category }}</div>
+    </a>
+  </div>
+</section>

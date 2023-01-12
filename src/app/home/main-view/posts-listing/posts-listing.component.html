@@ -16,18 +16,30 @@
           />
         </div>
       </div>
-      <div class="-mt-2">
+
+      <div class="post-summary -mt-2">
         <tui-hosted-dropdown tuiDropdownHover [content]="dropdown">
-          <button tuiButton tuiHostedDropdownHost class="-ml-2 text-sm">
+          <a
+            tuiButton
+            tuiHostedDropdownHost
+            [routerLink]="'/u/' + post.author.id"
+            class="-ml-2 text-sm"
+          >
             {{ post.author.name }}
-          </button>
+          </a>
         </tui-hosted-dropdown>
         <p class="text-xs">{{ post.createdAt | date : 'MMM d' }}</p>
         <h3 class="mt-2 text-3xl font-bold hover:text-blue-800">
           <a [routerLink]="post.url">{{ post.title }}</a>
         </h3>
-        <div class="-ml-2 mt-1">
-          <button tuiButton *ngFor="let tag of post.tags">#{{ tag }}</button>
+        <div class="tags -ml-2 mt-1">
+          <a
+            tuiTag
+            *ngFor="let tag of post.tags"
+            [routerLink]="'/t/' + tag"
+            [value]="'#' + tag"
+            [hoverable]="true"
+          ></a>
         </div>
         <div class="flex justify-between items-center mt-2">
           <div class="left-buttons">
@@ -49,34 +61,49 @@
           </div>
         </div>
       </div>
+
+      <ng-template #dropdown let-item>
+        <div
+          class="dropdown min-w-[250px] max-w-[360px] flex flex-col px-4 pb-4 text-base border-t-[32px] border-t-blue-700"
+        >
+          <div class="-mt-4">
+            <a [routerLink]="'/u/' + post.author.id" class="flex">
+              <span class="inline-block w-12 h-12 flex-shrink-0">
+                <img
+                  [src]="post.author.image"
+                  [alt]="post.author.name"
+                  class="rounded-full"
+                />
+              </span>
+              <span class="inline-block ml-2 mt-6 text-xl font-bold">
+                {{ post.author.name }}
+              </span>
+            </a>
+          </div>
+          <div class="mt-4">
+            <button tuiButton appearance="primary" size="s" class="w-full">
+              Follow
+            </button>
+          </div>
+          <div class="mt-4 text-gray-600">Follow for dev, javascript</div>
+          <div class="mt-4">
+            <ul>
+              <li>
+                <div class="text-xs text-gray-700">Work</div>
+                <div class="value">FPT Software</div>
+              </li>
+              <li class="mt-2">
+                <div class="text-xs text-gray-700">Work</div>
+                <div class="value">FPT Software</div>
+              </li>
+              <li class="mt-2">
+                <div class="text-xs text-gray-700">Work</div>
+                <div class="value">FPT Software</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </ng-template>
     </div>
   </a>
 </article>
-
-<ng-template #dropdown>
-  <div
-    class="dropdown flex flex-col px-4 pb-4 border-t-[32px] border-t-blue-700"
-  >
-    <div class="-mt-4">Jerry</div>
-    <div>
-      <button tuiButton>Follow</button>
-    </div>
-    <div>Follow for dev, javascript</div>
-    <div>
-      <ul>
-        <li>
-          <div class="key">Work</div>
-          <div class="value">FPT Software</div>
-        </li>
-        <li>
-          <div class="key">Work</div>
-          <div class="value">FPT Software</div>
-        </li>
-        <li>
-          <div class="key">Work</div>
-          <div class="value">FPT Software</div>
-        </li>
-      </ul>
-    </div>
-  </div>
-</ng-template>

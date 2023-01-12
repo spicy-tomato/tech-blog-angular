@@ -1,0 +1,11 @@
+.wrapper > *:not(:first-child) {
+  @apply mt-2;
+}
+
+li > span {
+  @apply w-1 h-1 ~"mt-0.5" ml-2 bg-gray-500 rounded-full;
+}
+
+li:last-child > span {
+  @apply hidden;
+}

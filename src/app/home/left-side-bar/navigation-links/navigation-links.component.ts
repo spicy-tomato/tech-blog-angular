@@ -8,7 +8,7 @@ type MenuItem = {
 @Component({
   selector: 'app-home-left-side-bar-navigation-links',
   templateUrl: './navigation-links.component.html',
-  styleUrls: ['./navigation-links.component.css'],
+  styleUrls: ['./navigation-links.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationLinksComponent {

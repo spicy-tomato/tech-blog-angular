@@ -1,18 +1,25 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TopBarComponent } from './top-bar.component';
-import { TuiButtonModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
-import { TuiInputModule } from '@taiga-ui/kit';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import {
+  TuiButtonModule,
+  TuiHostedDropdownModule,
+  TuiTextfieldControllerModule,
+} from '@taiga-ui/core';
+import { TuiAvatarModule, TuiInputModule } from '@taiga-ui/kit';
+import { TopBarComponent } from './top-bar.component';
 
 const TAIGA_UI = [
+  TuiAvatarModule,
   TuiButtonModule,
-  TuiTextfieldControllerModule,
+  TuiHostedDropdownModule,
   TuiInputModule,
+  TuiTextfieldControllerModule,
 ];
 
 @NgModule({
-  imports: [CommonModule, FormsModule, ...TAIGA_UI],
+  imports: [CommonModule, RouterModule, FormsModule, ...TAIGA_UI],
   declarations: [TopBarComponent],
   exports: [TopBarComponent],
 })

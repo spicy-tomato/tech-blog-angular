@@ -8,7 +8,7 @@ type UrlButton = {
 @Component({
   selector: 'app-home-main-view-tabs',
   templateUrl: './tabs.component.html',
-  styleUrls: ['./tabs.component.css'],
+  styleUrls: ['./tabs.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabsComponent {

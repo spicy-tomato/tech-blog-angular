@@ -3,14 +3,15 @@
 }
 
 article {
-  box-shadow: 0 0 0 1px rgba(23, 23, 23, 0.1);
+  box-shadow: 0 0 0 1px var(--card-border);
 }
 
-button {
+.post-summary button {
   @apply rounded-md;
 }
 
-button ::ng-deep .t-content {
+.post-summary [tuiButton] ::ng-deep .t-content,
+.post-summary [tuiIconButton] ::ng-deep .t-content {
   @apply text-gray-800;
 }
 
@@ -24,7 +25,7 @@ button ::ng-deep .t-content {
 
 .dropdown > div:not(:first) {
   @apply mt-4;
-} 
+}
 
 .key {
   @apply text-xs text-gray-700;

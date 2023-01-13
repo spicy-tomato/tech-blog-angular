@@ -21,6 +21,7 @@
     "@angular/platform-browser": "14.2.12",
     "@angular/platform-browser-dynamic": "14.2.12",
     "@angular/router": "14.2.12",
+    "@ngrx/store": "^14.3.2",
     "@taiga-ui/addon-editor": "^3.15.0",
     "@taiga-ui/addon-mobile": "^3.15.0",
     "@taiga-ui/cdk": "^3.15.0",

@@ -11,6 +11,7 @@ import {
 import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +23,7 @@ import { AppRoutingModule } from './app.routing';
     TuiRootModule,
     TuiAlertModule,
     TuiDialogModule,
+    StoreModule.forRoot({}, {}),
   ],
   providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }],
   bootstrap: [AppComponent],

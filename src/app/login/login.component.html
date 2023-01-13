@@ -27,9 +27,10 @@
         </span>
       </div>
 
-      <form [formGroup]="form">
+      <form [formGroup]="form" class="text-base">
         <div class="tui-form__row">
-          <label tuiLabel="Email">
+          <label>
+            Email
             <tui-input
               formControlName="email"
               [tuiTextfieldLabelOutside]="true"
@@ -40,7 +41,8 @@
           </label>
         </div>
         <div class="tui-form__row">
-          <label tuiLabel="Password">
+          <label>
+            Password
             <tui-input-password
               formControlName="password"
               [tuiTextfieldLabelOutside]="true"
@@ -48,7 +50,19 @@
             ></tui-input-password>
           </label>
         </div>
+        <div class="tui-form__row">
+          <tui-checkbox-labeled formControlName="remember" size="l">
+            Remember me
+          </tui-checkbox-labeled>
+        </div>
+        <div class="tui-form__row">
+          <button tuiButton size="m">Continue</button>
+        </div>
       </form>
+
+      <div class="mt-6 text-center">
+        <a tuiLink>I forgot my password</a>
+      </div>
     </div>
   </section>
 </app-layout>

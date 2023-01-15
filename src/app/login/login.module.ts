@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LetModule } from '@ngrx/component';
 import {
   TuiButtonModule,
   TuiLinkModule,
@@ -15,6 +16,7 @@ import { LayoutModule } from 'src/app/shared/ui/layout/layout.module';
 import { LoginComponent } from './login.component';
 import { LoginRoutingModule } from './login.routing';
 
+const NGRX = [LetModule];
 const TAIGA_UI = [
   TuiButtonModule,
   TuiCheckboxLabeledModule,
@@ -30,6 +32,7 @@ const TAIGA_UI = [
     ReactiveFormsModule,
     LayoutModule,
     LoginRoutingModule,
+    ...NGRX,
     ...TAIGA_UI,
   ],
   declarations: [LoginComponent],

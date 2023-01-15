@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppPageAction, AppState } from 'src/app/store';
 
 @Component({
   selector: 'app-root',
@@ -6,4 +8,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./app.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {}
+export class AppComponent {
+  // CONSTRUCTOR
+  constructor(store: Store<AppState>) {
+    store.dispatch(AppPageAction.getUserInfo());
+  }
+}

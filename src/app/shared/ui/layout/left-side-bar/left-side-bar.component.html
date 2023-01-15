@@ -4,7 +4,9 @@
     (closeSidebar)="closeSidebar.emit()"
   ></app-left-side-bar-close-mobile-sidebar>
   <div [class.p-2]="isMobile">
-    <app-left-side-bar-login-box></app-left-side-bar-login-box>
+    <ng-container *ngrxLet="user$ as user">
+      <app-left-side-bar-login-box *ngIf="!user"></app-left-side-bar-login-box>
+    </ng-container>
     <app-left-side-bar-navigation-links></app-left-side-bar-navigation-links>
     <app-left-side-bar-other-navigation-links></app-left-side-bar-other-navigation-links>
     <app-left-side-bar-social-media></app-left-side-bar-social-media>

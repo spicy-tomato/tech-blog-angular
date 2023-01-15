@@ -1,11 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { tuiButtonOptionsProvider } from '@taiga-ui/core';
-
-type User = {
-  image: string;
-  name: string;
-  username: string;
-};
+import { AppSelector, AppState } from 'src/app/store';
 
 type Link = {
   label: string;
@@ -26,12 +22,7 @@ type Link = {
 })
 export class TopBarComponent {
   //  PUBLIC PROPERTIES
-  readonly loggedUser: User | null = {
-    image:
-      'https://res.cloudinary.com/practicaldev/image/fetch/s--YCB-4jRF--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/972087/1b8d0dd0-d860-40c9-b7b3-c7f5e96b66ff.jpg',
-    name: 'An Nguyen',
-    username: 'annguyen',
-  };
+  readonly user$ = this.store.select(AppSelector.user);
   readonly links: Link[] = [
     {
       label: 'Dashboard',
@@ -58,6 +49,9 @@ export class TopBarComponent {
   searchContent = '';
   openDropdown = false;
   openSidebar = false;
+
+  // CONSTRUCTOR
+  constructor(private store: Store<AppState>) {}
 
   // PUBLIC METHODS
   toggleSidebar(open: boolean): void {

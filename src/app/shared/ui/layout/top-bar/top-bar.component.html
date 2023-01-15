@@ -43,64 +43,68 @@
     <!-- Right -->
     <div class="right-buttons flex items-center">
       <div class="md:hidden">
-        <a tuiIconButton appearance="flat" icon="tuiIconSearchLarge"></a>
+        <a tuiIconButton icon="tuiIconSearchLarge"></a>
       </div>
 
-      <ng-container *ngIf="loggedUser; else notLoggedIn">
-        <div class="hidden md:block">
-          <a tuiButton appearance="whiteblock">Create Post</a>
-        </div>
-        <a tuiIconButton appearance="flat" icon="tuiIconBellLarge"></a>
-        <tui-hosted-dropdown
-          [(open)]="openDropdown"
-          [content]="dropdown"
-          [tuiDropdownOffset]="9"
-        >
-          <button>
-            <tui-avatar
-              [avatarUrl]="loggedUser.image"
-              [rounded]="true"
-              size="s"
-            ></tui-avatar>
-          </button>
-        </tui-hosted-dropdown>
-
-        <ng-template #dropdown let-close="close">
-          <div class="w-[max-content] min-w-[250px] max-w-[360px] p-2">
-            <ul>
-              <li class="mb-2 pb-2 border-b">
-                <a
-                  tuiButton
-                  size="l"
-                  [routerLink]="'/u/' + loggedUser.username"
-                  class="list-item username w-full"
-                >
-                  <span class="block mt-1">
-                    {{ loggedUser.name }}
-                  </span>
-                  <span class="block -mt-1 text-gray-500">
-                    @{{ loggedUser.username }}
-                  </span>
-                </a>
-              </li>
-              <li
-                *ngFor="let link of links; last as last"
-                [ngClass]="last ? 'mt-2 pt-2 border-t' : ''"
-              >
-                <a tuiButton [routerLink]="link.url" class="list-item w-full">
-                  <span class="block">{{ link.label }}</span>
-                </a>
-              </li>
-            </ul>
+      <ng-container *ngrxLet="user$ as user">
+        <ng-container *ngIf="user; else notLoggedIn">
+          <div class="hidden md:block">
+            <a tuiButton appearance="whiteblock">Create Post</a>
           </div>
-        </ng-template>
+          <a tuiIconButton icon="tuiIconBellLarge"></a>
+          <tui-hosted-dropdown
+            [(open)]="openDropdown"
+            [content]="dropdown"
+            [tuiDropdownOffset]="9"
+          >
+            <button>
+              <tui-avatar
+                [avatarUrl]="user.image ?? null"
+                [rounded]="true"
+                size="s"
+              ></tui-avatar>
+            </button>
+          </tui-hosted-dropdown>
+
+          <ng-template #dropdown let-close="close">
+            <div class="w-[max-content] min-w-[250px] max-w-[360px] p-2">
+              <ul>
+                <li class="mb-2 pb-2 border-b">
+                  <a
+                    tuiButton
+                    size="l"
+                    [routerLink]="'/u/' + user.userName"
+                    class="list-item username w-full"
+                  >
+                    <span class="block mt-1">
+                      {{ user.fullName }}
+                    </span>
+                    <span class="block -mt-1 text-gray-500">
+                      @{{ user.userName }}
+                    </span>
+                  </a>
+                </li>
+                <li
+                  *ngFor="let link of links; last as last"
+                  [ngClass]="last ? 'mt-2 pt-2 border-t' : ''"
+                >
+                  <a tuiButton [routerLink]="link.url" class="list-item w-full">
+                    <span class="block">{{ link.label }}</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </ng-template>
+        </ng-container>
       </ng-container>
 
       <ng-template #notLoggedIn>
         <div class="hidden md:block">
-          <a tuiButton routerLink="/login" appearance="flat">Log in</a>
+          <a tuiButton routerLink="/login">Log in</a>
         </div>
-        <a tuiButton routerLink="/register">Create account</a>
+        <a tuiButton routerLink="/register" appearance="primary">
+          Create account
+        </a>
       </ng-template>
     </div>
   </div>

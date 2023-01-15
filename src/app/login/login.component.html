@@ -32,11 +32,11 @@
           <label>
             Email
             <tui-input
-              formControlName="email"
+              formControlName="userName"
               [tuiTextfieldLabelOutside]="true"
               tuiTextfieldSize="m"
             >
-              <input tuiTextfield type="email" />
+              <input tuiTextfield />
             </tui-input>
           </label>
         </div>
@@ -55,8 +55,15 @@
             Remember me
           </tui-checkbox-labeled>
         </div>
-        <div class="tui-form__row">
-          <button tuiButton size="m">Continue</button>
+        <div *ngrxLet="status$ as status" class="tui-form__row">
+          <button
+            tuiButton
+            (click)="login()"
+            [showLoader]="status === 'loading'"
+            size="m"
+          >
+            Continue
+          </button>
         </div>
       </form>
 

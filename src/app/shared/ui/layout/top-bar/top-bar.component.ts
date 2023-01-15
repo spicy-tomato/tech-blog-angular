@@ -25,15 +25,14 @@ type Link = {
   ],
 })
 export class TopBarComponent {
-  searchContent = '';
-  openDropdown = false;
-  loggedUser: User | null = {
+  //  PUBLIC PROPERTIES
+  readonly loggedUser: User | null = {
     image:
       'https://res.cloudinary.com/practicaldev/image/fetch/s--YCB-4jRF--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/972087/1b8d0dd0-d860-40c9-b7b3-c7f5e96b66ff.jpg',
     name: 'An Nguyen',
     username: 'annguyen',
   };
-  links: Link[] = [
+  readonly links: Link[] = [
     {
       label: 'Dashboard',
       url: '/dashboard',
@@ -55,4 +54,13 @@ export class TopBarComponent {
       url: '/sign-out',
     },
   ];
+
+  searchContent = '';
+  openDropdown = false;
+  openSidebar = false;
+
+  // PUBLIC METHODS
+  toggleSidebar(open: boolean): void {
+    this.openSidebar = open;
+  }
 }

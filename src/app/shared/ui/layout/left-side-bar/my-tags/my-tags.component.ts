@@ -6,7 +6,7 @@ type Tag = {
 };
 
 @Component({
-  selector: 'app-home-left-side-bar-my-tags',
+  selector: 'app-left-side-bar-my-tags',
   templateUrl: './my-tags.component.html',
   styleUrls: ['./my-tags.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,

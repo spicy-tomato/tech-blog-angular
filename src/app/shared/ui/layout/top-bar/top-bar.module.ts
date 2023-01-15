@@ -2,24 +2,35 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { TuiSidebarModule } from '@taiga-ui/addon-mobile';
+import { TuiActiveZoneModule } from '@taiga-ui/cdk';
 import {
   TuiButtonModule,
   TuiHostedDropdownModule,
   TuiTextfieldControllerModule,
 } from '@taiga-ui/core';
 import { TuiAvatarModule, TuiInputModule } from '@taiga-ui/kit';
+import { LeftSideBarModule } from 'src/app/shared/ui/layout/left-side-bar/left-side-bar.module';
 import { TopBarComponent } from './top-bar.component';
 
 const TAIGA_UI = [
+  TuiActiveZoneModule,
   TuiAvatarModule,
   TuiButtonModule,
   TuiHostedDropdownModule,
   TuiInputModule,
+  TuiSidebarModule,
   TuiTextfieldControllerModule,
 ];
 
 @NgModule({
-  imports: [CommonModule, RouterModule, FormsModule, ...TAIGA_UI],
+  imports: [
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    LeftSideBarModule,
+    ...TAIGA_UI,
+  ],
   declarations: [TopBarComponent],
   exports: [TopBarComponent],
 })

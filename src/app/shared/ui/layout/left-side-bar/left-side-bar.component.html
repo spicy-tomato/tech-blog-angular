@@ -1,0 +1,13 @@
+<tui-scrollbar [class.max-h-screen]="isMobile">
+  <app-left-side-bar-close-mobile-sidebar
+    *ngIf="isMobile"
+    (closeSidebar)="closeSidebar.emit()"
+  ></app-left-side-bar-close-mobile-sidebar>
+  <div [class.p-2]="isMobile">
+    <app-left-side-bar-login-box></app-left-side-bar-login-box>
+    <app-left-side-bar-navigation-links></app-left-side-bar-navigation-links>
+    <app-left-side-bar-other-navigation-links></app-left-side-bar-other-navigation-links>
+    <app-left-side-bar-social-media></app-left-side-bar-social-media>
+    <app-left-side-bar-my-tags *ngIf="!isMobile"></app-left-side-bar-my-tags>
+  </div>
+</tui-scrollbar>

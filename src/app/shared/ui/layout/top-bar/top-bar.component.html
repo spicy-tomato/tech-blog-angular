@@ -4,6 +4,21 @@
   >
     <!-- Left -->
     <div class="h-11 flex">
+      <div class="mr-2 md:hidden">
+        <button
+          tuiIconButton
+          (click)="toggleSidebar(true)"
+          (tuiActiveZoneChange)="toggleSidebar($event)"
+          icon="tuiIconMenuLarge"
+        >
+          <div *tuiSidebar="openSidebar" class="md:hidden">
+            <app-left-side-bar
+              (closeSidebar)="toggleSidebar(false)"
+              [isMobile]="true"
+            ></app-left-side-bar>
+          </div>
+        </button>
+      </div>
       <a routerLink="/" class="h-full">
         <img
           src="https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png"
@@ -63,7 +78,9 @@
                   <span class="block mt-1">
                     {{ loggedUser.name }}
                   </span>
-                  <span class="block -mt-1 text-gray-500"> @{{ loggedUser.username }} </span>
+                  <span class="block -mt-1 text-gray-500">
+                    @{{ loggedUser.username }}
+                  </span>
                 </a>
               </li>
               <li

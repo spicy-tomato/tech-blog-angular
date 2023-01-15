@@ -6,7 +6,7 @@ type MenuItem = {
 };
 
 @Component({
-  selector: 'app-home-left-side-bar-other-navigation-links',
+  selector: 'app-left-side-bar-other-navigation-links',
   templateUrl: './other-navigation-links.component.html',
   styleUrls: ['./other-navigation-links.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -9,7 +9,8 @@
     "test": "ng test",
     "prepare": "husky install",
     "release": "standard-version",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "postinstall": "husky install"
   },
   "private": true,
   "dependencies": {

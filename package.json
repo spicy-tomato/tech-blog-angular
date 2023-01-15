@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "prepare": "husky install",
-    "release": "standard-version"
+    "release": "standard-version",
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
@@ -41,13 +42,21 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "14.2.10",
+    "@angular-eslint/builder": "14.4.0",
+    "@angular-eslint/eslint-plugin": "14.4.0",
+    "@angular-eslint/eslint-plugin-template": "14.4.0",
+    "@angular-eslint/schematics": "14.4.0",
+    "@angular-eslint/template-parser": "14.4.0",
     "@angular/cli": "14.2.10",
     "@angular/compiler-cli": "14.2.12",
     "@commitlint/cli": "^17.4.0",
     "@commitlint/config-conventional": "^17.4.0",
     "@types/dompurify": "2.2.3",
     "@types/jasmine": "~4.0.0",
+    "@typescript-eslint/eslint-plugin": "5.43.0",
+    "@typescript-eslint/parser": "5.43.0",
     "autoprefixer": "^10.4.13",
+    "eslint": "^8.28.0",
     "husky": "^8.0.3",
     "jasmine-core": "~4.3.0",
     "karma": "~6.4.0",

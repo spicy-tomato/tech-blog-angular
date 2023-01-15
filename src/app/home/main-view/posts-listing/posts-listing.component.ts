@@ -131,8 +131,4 @@ export class PostsListingComponent {
       timeToRead: 20,
     },
   ];
-
-  test(o: any) {
-    console.log(o);
-  }
 }

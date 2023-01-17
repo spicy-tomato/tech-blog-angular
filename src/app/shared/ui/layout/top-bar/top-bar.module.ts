@@ -8,6 +8,7 @@ import { TuiActiveZoneModule } from '@taiga-ui/cdk';
 import {
   TuiButtonModule,
   TuiHostedDropdownModule,
+  TuiLoaderModule,
   TuiTextfieldControllerModule,
 } from '@taiga-ui/core';
 import { TuiAvatarModule, TuiInputModule } from '@taiga-ui/kit';
@@ -21,6 +22,7 @@ const TAIGA_UI = [
   TuiButtonModule,
   TuiHostedDropdownModule,
   TuiInputModule,
+  TuiLoaderModule,
   TuiSidebarModule,
   TuiTextfieldControllerModule,
 ];

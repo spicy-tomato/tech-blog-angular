@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { tuiButtonOptionsProvider } from '@taiga-ui/core';
+import { tap } from 'rxjs';
 import { LoginStore } from './login.store';
 
 @Component({
@@ -13,9 +14,10 @@ import { LoginStore } from './login.store';
 export class LoginComponent {
   // PUBLIC PROPERTIES
   readonly form = this.fb.group({
-    userName: ['', [Validators.required, Validators.email]],
+    userName: ['', Validators.required],
     password: ['', Validators.required],
     remember: [false],
+    validator: [''],
   });
   readonly status$ = this.store.status$;
 
@@ -23,11 +25,28 @@ export class LoginComponent {
   constructor(
     private readonly fb: FormBuilder,
     private readonly store: LoginStore
-  ) {}
+  ) {
+    this.handleStatusChange();
+  }
 
   // PUBLIC METHODS
   login(): void {
-    const { ...loginForm } = this.form.value;
-    this.store.login(loginForm);
+    if (this.form.valid) {
+      const { ...loginForm } = this.form.value;
+      this.store.login(loginForm);
+    }
+  }
+
+  // PRIVATE METHODS
+  private handleStatusChange(): void {
+    this.status$
+      .pipe(
+        tap((status) => {
+          if (status === 'error') {
+            this.form.setErrors({ validator: 'Username or password is wrong' });
+          }
+        })
+      )
+      .subscribe();
   }
 }

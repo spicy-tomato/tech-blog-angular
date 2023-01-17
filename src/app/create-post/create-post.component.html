@@ -1,0 +1,18 @@
+<div class="bg-gray-100">
+  <div
+    class="relative h-screen max-w-7xl grid grid-cols-[100%] grid-rows-[min-content_1fr_min-content] gap-x-2 mx-auto md:px-2 md:grid-cols-[64px_7fr_3fr] lg:gap-x-4 lg:px-4"
+  >
+    <app-create-post-header
+      [(activeItemIndex)]="activeItemIndex"
+      class="md:col-end-[span_2]"
+    ></app-create-post-header>
+    <app-create-post-content
+      [activeItemIndex]="activeItemIndex"
+      class="md:col-end-[span_2] lg:col-start-2 lg:col-end-2"
+    ></app-create-post-content>
+    <app-create-post-aside class="hidden md:block"></app-create-post-aside>
+    <app-create-post-footer
+      class="lg:col-start-2 lg:col-end-[span_2]"
+    ></app-create-post-footer>
+  </div>
+</div>

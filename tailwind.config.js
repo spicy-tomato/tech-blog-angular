@@ -4,7 +4,8 @@ module.exports = {
   theme: {
     extend: {
       spacing: {
-        'nav-h': '56px',
+        'header-height': 'var(--header-height)',
+        'article-form-actions-height': 'var(--article-form-actions-height)',
       },
     },
   },

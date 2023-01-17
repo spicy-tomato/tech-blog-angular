@@ -30,7 +30,7 @@
       <form [formGroup]="form" class="text-base">
         <div class="tui-form__row">
           <label>
-            Email
+            Username
             <tui-input
               formControlName="userName"
               [tuiTextfieldLabelOutside]="true"
@@ -38,6 +38,10 @@
             >
               <input tuiTextfield />
             </tui-input>
+            <tui-error
+              formControlName="userName"
+              [error]="[] | tuiFieldError | async"
+            ></tui-error>
           </label>
         </div>
         <div class="tui-form__row">
@@ -48,6 +52,10 @@
               [tuiTextfieldLabelOutside]="true"
               tuiTextfieldSize="m"
             ></tui-input-password>
+            <tui-error
+              formControlName="password"
+              [error]="[] | tuiFieldError | async"
+            ></tui-error>
           </label>
         </div>
         <div class="tui-form__row">
@@ -60,10 +68,15 @@
             tuiButton
             (click)="login()"
             [showLoader]="status === 'loading'"
+            [disabled]="form.invalid"
             size="m"
           >
             Continue
           </button>
+          <tui-error
+            [error]="form.errors?.['validator']"
+            class="mt-4 text-center"
+          ></tui-error>
         </div>
       </form>
 

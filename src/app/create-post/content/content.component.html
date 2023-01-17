@@ -1,0 +1,78 @@
+<tui-scrollbar class="wrapper h-full bg-white rounded-md">
+  <form *ngIf="activeItemIndex === 0; else preview" [formGroup]="form">
+    <div class="top">
+      <div class="mb-4">
+        <button
+          tuiButton
+          appearance="outline"
+          tuiHint="Use a ratio of 100:42 for best results."
+          tuiHintDirection="bottom"
+          tuiHintAppearance="onDark"
+        >
+          Add a cover image
+        </button>
+      </div>
+      <div #title class="mb-2">
+        <textarea
+          formControlName="title"
+          autosize
+          (focus)="changeFocusItem('title')"
+          [minRows]="1"
+          placeholder="New post title here..."
+          class="w-full text-3xl font-bold outline-none resize-none placeholder-gray-600 md:text-4xl lg:text-5xl"
+        ></textarea>
+      </div>
+      <div #tags>
+        <tui-input-tag
+          formControlName="tags"
+          (focusedChange)="$event ? changeFocusItem('tags') : null"
+          (searchChange)="onSearchChange($event)"
+          [tuiTextfieldLabelOutside]="true"
+          [pseudoHover]="false"
+          [pseudoFocus]="false"
+          [pseudoActive]="false"
+          class="!rounded-none"
+        >
+          Add up to 4 tags
+          <tui-data-list-wrapper
+            *tuiDataList
+            [items]="items$ | async"
+          ></tui-data-list-wrapper>
+        </tui-input-tag>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <div #body>
+        <tui-editor
+          formControlName="body"
+          (focusedChange)="$event ? changeFocusItem('body') : null"
+          exampleText="Write your content here..."
+        ></tui-editor>
+      </div>
+    </div>
+  </form>
+
+  <ng-template #preview>
+    <div class="top !pb-0">
+      <h1 class="mb-2 text-3xl font-bold md:text-4xl lg:text-5xl">
+        {{ form.value['title'] }}
+      </h1>
+      <div class="tags -ml-2 mt-1">
+        <a
+          tuiTag
+          *ngFor="let tag of form.value['tags']"
+          [routerLink]="'/t/' + tag"
+          [value]="'#' + tag"
+          [hoverable]="true"
+        ></a>
+      </div>
+    </div>
+    <div class="bottom">
+      <tui-editor-socket
+        class="socket"
+        [content]="form.value['body'] || ''"
+      ></tui-editor-socket>
+    </div>
+  </ng-template>
+</tui-scrollbar>

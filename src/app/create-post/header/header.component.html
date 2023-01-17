@@ -1,0 +1,30 @@
+<div
+  class="h-header-height flex justify-end items-center px-2 sm:justify-between md:px-0"
+>
+  <div class="hidden items-center text-base sm:flex">
+    <a routerLink="/" class="h-full hidden mr-2 md:block lg:mr-4">
+      <img
+        src="https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png"
+        alt="Logo"
+        class="h-10"
+      />
+    </a>
+    <div>Create Post</div>
+  </div>
+  <div class="flex items-center">
+    <nav>
+      <tui-tabs
+        [activeItemIndex]="activeItemIndex"
+        (activeItemIndexChange)="activeItemIndexChange.next($event)"
+      >
+        <button tuiTab (click)="activeItemIndexChange.next(0)">Edit</button>
+        <button tuiTab (click)="onClickPreview()">Preview</button>
+      </tui-tabs>
+    </nav>
+    <button
+      tuiIconButton
+      icon="tuiIconCloseLarge"
+      class="ml-4 lg:!absolute lg:top-2 lg:right-2"
+    ></button>
+  </div>
+</div>

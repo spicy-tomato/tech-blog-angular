@@ -21,6 +21,11 @@ const routes: Routes = [
     loadChildren: async () =>
       (await import('./register/register.module')).RegisterModule,
   },
+  {
+    path: 'new',
+    loadChildren: async () =>
+      (await import('./create-post/create-post.module')).CreatePostModule,
+  },
 ];
 
 @NgModule({

@@ -16,6 +16,10 @@ export const appReducer = createReducer(
     ...state,
     status: 'loading',
   })),
+  on(AppPageAction.logOut, (state) => ({
+    ...state,
+    user: null,
+  })),
   on(AppApiAction.getUserInfoSuccessful, (state, { user }) => ({
     ...state,
     user,
@@ -23,10 +27,7 @@ export const appReducer = createReducer(
   })),
   on(AppApiAction.getUserInfoFailed, (state) => ({
     ...state,
+    user: null,
     status: 'error',
-    user: {
-      fullName: 'test',
-      userName: 'dfasdf'
-    }
   }))
 );

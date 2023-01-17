@@ -4,11 +4,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LetModule } from '@ngrx/component';
 import {
   TuiButtonModule,
+  TuiErrorModule,
   TuiLinkModule,
   TuiTextfieldControllerModule,
 } from '@taiga-ui/core';
 import {
   TuiCheckboxLabeledModule,
+  TuiFieldErrorPipeModule,
   TuiInputModule,
   TuiInputPasswordModule,
 } from '@taiga-ui/kit';
@@ -20,6 +22,8 @@ const NGRX = [LetModule];
 const TAIGA_UI = [
   TuiButtonModule,
   TuiCheckboxLabeledModule,
+  TuiErrorModule,
+  TuiFieldErrorPipeModule,
   TuiInputModule,
   TuiInputPasswordModule,
   TuiLinkModule,

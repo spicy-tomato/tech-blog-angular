@@ -5,7 +5,7 @@ import {
   Input,
   ViewChild,
 } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import {
   defaultEditorExtensions,
   TUI_EDITOR_EXTENSIONS,
@@ -60,7 +60,9 @@ export class ContentComponent {
     startWith(databaseMockData)
   );
   readonly form = this.fb.group({
-    image: [null, Validators.required],
+    image: new FormControl<File | null>(null, {
+      validators: Validators.required,
+    }),
     title: ['Title', Validators.required],
     tags: [[], Validators.required],
     body: ['Body', Validators.required],
@@ -88,6 +90,15 @@ export class ContentComponent {
 
   onSearchChange(search: string): void {
     this.search$.next(search);
+  }
+
+  onFileChange(e: Event): void {
+    const image = (e.target as HTMLInputElement)?.files?.[0];
+    this.form.patchValue({ image });
+  }
+
+  test(): void {
+    console.log(typeof this.form.value['image']);
   }
 
   // PRIVATE METHODS

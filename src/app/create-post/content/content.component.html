@@ -1,16 +1,41 @@
 <tui-scrollbar class="wrapper h-full bg-white rounded-md">
   <form *ngIf="activeItemIndex === 0; else preview" [formGroup]="form">
     <div class="top">
-      <div class="mb-4">
-        <button
-          tuiButton
-          appearance="outline"
-          tuiHint="Use a ratio of 100:42 for best results."
-          tuiHintDirection="bottom"
-          tuiHintAppearance="onDark"
-        >
-          Add a cover image
-        </button>
+      <div class="flex items-center mb-4">
+        <img
+          *ngIf="form.value['image'] | localImageUrl as imageUrl"
+          [src]="imageUrl"
+          alt="Cover image"
+          class="w-64 h-28 mr-4 object-scale-down"
+        />
+        <div>
+          <button
+            tuiButton
+            (click)="image.click()"
+            appearance="outline"
+            tuiHint="Use a ratio of 100:42 for best results."
+            tuiHintDirection="bottom"
+            tuiHintAppearance="onDark"
+          >
+            {{ form.value['image'] ? 'Change' : 'Add a cover image' }}
+          </button>
+          <button
+            tuiButton
+            *ngIf="form.value['image']"
+            (click)="form.controls['image'].setValue(null)"
+            appearance="secondary-destructive"
+            class="ml-2"
+          >
+            Remove
+          </button>
+        </div>
+        <input
+          #image
+          (change)="onFileChange($event)"
+          type="file"
+          accept="image/*"
+          class="hidden"
+        />
       </div>
       <div #title class="mb-2">
         <textarea
@@ -54,25 +79,37 @@
   </form>
 
   <ng-template #preview>
-    <div class="top !pb-0">
-      <h1 class="mb-2 text-3xl font-bold md:text-4xl lg:text-5xl">
-        {{ form.value['title'] }}
-      </h1>
-      <div class="tags -ml-2 mt-1">
-        <a
-          tuiTag
-          *ngFor="let tag of form.value['tags']"
-          [routerLink]="'/t/' + tag"
-          [value]="'#' + tag"
-          [hoverable]="true"
-        ></a>
+    <article>
+      <header class="top !pb-0">
+        <div class="pt-[42%]">
+          <img
+            *ngIf="form.value['image'] | localImageUrl as imageUrl"
+            [src]="imageUrl"
+            alt="Cover image"
+            class="absolute inset-0 w-full h-full object-scale-down"
+          />
+        </div>
+        <div>
+          <h1 class="mb-2 text-3xl font-bold md:text-4xl lg:text-5xl">
+            {{ form.value['title'] }}
+          </h1>
+          <div class="tags -ml-2 mt-1">
+            <a
+              tuiTag
+              *ngFor="let tag of form.value['tags']"
+              [routerLink]="'/t/' + tag"
+              [value]="'#' + tag"
+              [hoverable]="true"
+            ></a>
+          </div>
+        </div>
+      </header>
+      <div class="bottom">
+        <tui-editor-socket
+          class="socket"
+          [content]="form.value['body'] || ''"
+        ></tui-editor-socket>
       </div>
-    </div>
-    <div class="bottom">
-      <tui-editor-socket
-        class="socket"
-        [content]="form.value['body'] || ''"
-      ></tui-editor-socket>
-    </div>
+    </article>
   </ng-template>
 </tui-scrollbar>

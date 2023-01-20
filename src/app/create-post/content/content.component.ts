@@ -5,13 +5,21 @@ import {
   Input,
   ViewChild,
 } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import {
   defaultEditorExtensions,
   TUI_EDITOR_EXTENSIONS,
 } from '@taiga-ui/addon-editor';
 import { tuiTagOptionsProvider } from '@taiga-ui/kit';
-import { delay, Observable, of, startWith, Subject, switchMap } from 'rxjs';
+import {
+  delay,
+  Observable,
+  of,
+  startWith,
+  Subject,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { CreatePostStore, FocusableItem } from '../create-post.store';
 
 const databaseMockData: readonly string[] = [
@@ -53,6 +61,8 @@ export class ContentComponent {
   private readonly search$ = new Subject<string>();
 
   // PUBLIC PROPERTIES
+  readonly coverImageUrl$ = this.store.coverImageUrl$;
+  readonly uploadCoverImageStatus$ = this.store.uploadCoverImageStatus$;
   readonly items$ = this.search$.pipe(
     switchMap((search) =>
       this.serverRequest(search).pipe(startWith<readonly string[] | null>(null))
@@ -60,9 +70,7 @@ export class ContentComponent {
     startWith(databaseMockData)
   );
   readonly form = this.fb.group({
-    image: new FormControl<File | null>(null, {
-      validators: Validators.required,
-    }),
+    image: ['', Validators.required],
     title: ['Title', Validators.required],
     tags: [[], Validators.required],
     body: ['Body', Validators.required],
@@ -72,7 +80,9 @@ export class ContentComponent {
   constructor(
     private readonly fb: FormBuilder,
     private readonly store: CreatePostStore
-  ) {}
+  ) {
+    this.handleChangeCoverImage();
+  }
 
   // PUBLIC METHODS
   changeFocusItem(focusItem: FocusableItem): void {
@@ -93,15 +103,25 @@ export class ContentComponent {
   }
 
   onFileChange(e: Event): void {
+    const formData = new FormData();
     const image = (e.target as HTMLInputElement)?.files?.[0];
-    this.form.patchValue({ image });
+    if (image) {
+      formData.append('file', image, image.name);
+      this.store.uploadCoverImage(formData);
+    }
   }
 
-  test(): void {
-    console.log(typeof this.form.value['image']);
+  onRemoveCoverImage(): void {
+    this.form.patchValue({ image: '' });
   }
 
   // PRIVATE METHODS
+  private handleChangeCoverImage(): void {
+    this.coverImageUrl$
+      .pipe(tap((image) => this.form.patchValue({ image })))
+      .subscribe();
+  }
+
   private serverRequest(search: string): Observable<readonly string[]> {
     const result = databaseMockData.filter((item) =>
       item.toLowerCase().includes(search.toLowerCase())

@@ -6,6 +6,7 @@ import { TuiEditorModule, TuiEditorSocketModule } from '@taiga-ui/addon-editor';
 import {
   TuiButtonModule,
   TuiHintModule,
+  TuiLoaderModule,
   TuiScrollbarModule,
   TuiTextfieldControllerModule,
 } from '@taiga-ui/core';
@@ -33,6 +34,7 @@ const TAIGA_UI = [
   TuiEditorSocketModule,
   TuiHintModule,
   TuiInputTagModule,
+  TuiLoaderModule,
   TuiScrollbarModule,
   TuiTabsModule,
   TuiTagModule,

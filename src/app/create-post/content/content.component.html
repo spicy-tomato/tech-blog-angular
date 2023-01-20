@@ -1,28 +1,43 @@
 <tui-scrollbar class="wrapper h-full bg-white rounded-md">
   <form *ngIf="activeItemIndex === 0; else preview" [formGroup]="form">
     <div class="top">
-      <div class="flex items-center mb-4">
+      <div
+        *ngrxLet="coverImageUrl$ as coverImageUrl"
+        class="flex items-center mb-4"
+      >
         <img
-          *ngIf="form.value['image'] | localImageUrl as imageUrl"
-          [src]="imageUrl"
+          *ngIf="coverImageUrl"
+          [src]="coverImageUrl"
           alt="Cover image"
           class="w-64 h-28 mr-4 object-scale-down"
         />
-        <div>
-          <button
-            tuiButton
-            (click)="image.click()"
-            appearance="outline"
-            tuiHint="Use a ratio of 100:42 for best results."
-            tuiHintDirection="bottom"
-            tuiHintAppearance="onDark"
+        <div class="flex">
+          <tui-loader
+            *ngrxLet="uploadCoverImageStatus$ as uploadCoverImageStatus"
+            [showLoader]="uploadCoverImageStatus === 'loading'"
+            [overlay]="true"
           >
-            {{ form.value['image'] ? 'Change' : 'Add a cover image' }}
-          </button>
+            <button
+              tuiButton
+              (click)="image.click()"
+              appearance="outline"
+              tuiHint="Use a ratio of 100:42 for best results."
+              tuiHintDirection="bottom"
+              tuiHintAppearance="onDark"
+            >
+              {{
+                uploadCoverImageStatus === 'loading'
+                  ? 'Uploading'
+                  : coverImageUrl
+                  ? 'Change'
+                  : 'Add a cover image'
+              }}
+            </button>
+          </tui-loader>
           <button
             tuiButton
-            *ngIf="form.value['image']"
-            (click)="form.controls['image'].setValue(null)"
+            *ngIf="coverImageUrl"
+            (click)="onRemoveCoverImage()"
             appearance="secondary-destructive"
             class="ml-2"
           >
@@ -81,14 +96,15 @@
   <ng-template #preview>
     <article>
       <header class="top !pb-0">
-        <div class="pt-[42%]">
-          <img
-            *ngIf="form.value['image'] | localImageUrl as imageUrl"
-            [src]="imageUrl"
-            alt="Cover image"
-            class="absolute inset-0 w-full h-full object-scale-down"
-          />
-        </div>
+        <ng-container *ngrxLet="coverImageUrl$ as coverImageUrl">
+          <div *ngIf="coverImageUrl" class="relative pt-[42%]">
+            <img
+              [src]="coverImageUrl"
+              alt="Cover image"
+              class="absolute inset-0 w-full h-full object-scale-down"
+            />
+          </div>
+        </ng-container>
         <div>
           <h1 class="mb-2 text-3xl font-bold md:text-4xl lg:text-5xl">
             {{ form.value['title'] }}

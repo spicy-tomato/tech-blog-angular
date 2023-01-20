@@ -19,6 +19,7 @@ export class UserService {
     this.url = env.baseUrl + 'user/';
   }
 
+  // PUBLIC METHODS
   login(request: LoginRequest): Observable<Result<LoginResponse>> {
     return this.http.post<Result<LoginResponse>>(this.url + 'login', request);
   }

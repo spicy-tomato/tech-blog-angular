@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { ComponentStore, tapResponse } from '@ngrx/component-store';
 import { switchMap, tap } from 'rxjs';
 import { Status } from 'src/core/data';
+import { PublishPostRequest } from 'src/data/requests';
 import { PostService } from 'src/data/services/post.service';
 
 export type FocusableItem = 'title' | 'tags' | 'body' | null;
@@ -9,8 +11,9 @@ export type FocusableItem = 'title' | 'tags' | 'body' | null;
 type CreatePostState = {
   focusItem: FocusableItem;
   helpYPosition: number;
-  uploadCoverImageStatus: Status;
   coverImageUrl: string;
+  uploadCoverImageStatus: Status;
+  publishStatus: Status;
 };
 
 @Injectable()
@@ -46,8 +49,28 @@ export class CreatePostStore extends ComponentStore<CreatePostState> {
     )
   );
 
+  readonly publish = this.effect<PublishPostRequest>((params$) =>
+    params$.pipe(
+      tap(() => this.patchState({ publishStatus: 'loading' })),
+      switchMap((request) =>
+        this.postService.publish(request).pipe(
+          tapResponse(
+            ({ data: postUrl }) => {
+              this.patchState({ publishStatus: 'success' });
+              this.router.navigate([postUrl]);
+            },
+            () => this.patchState({ publishStatus: 'error' })
+          )
+        )
+      )
+    )
+  );
+
   // CONSTRUCTOR
-  constructor(private readonly postService: PostService) {
+  constructor(
+    private readonly router: Router,
+    private readonly postService: PostService
+  ) {
     super(<CreatePostState>{
       focusItem: null,
       helpYPosition: 0,

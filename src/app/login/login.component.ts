@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { tuiButtonOptionsProvider } from '@taiga-ui/core';
 import { tap } from 'rxjs';
 import { LoginStore } from './login.store';
@@ -23,7 +23,7 @@ export class LoginComponent {
 
   // CONSTRUCTOR
   constructor(
-    private readonly fb: FormBuilder,
+    private readonly fb: NonNullableFormBuilder,
     private readonly store: LoginStore
   ) {
     this.handleStatusChange();

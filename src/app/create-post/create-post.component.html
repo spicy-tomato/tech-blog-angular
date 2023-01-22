@@ -7,11 +7,14 @@
       class="md:col-end-[span_2]"
     ></app-create-post-header>
     <app-create-post-content
+      #content
       [activeItemIndex]="activeItemIndex"
       class="md:col-end-[span_2] lg:col-start-2 lg:col-end-2"
     ></app-create-post-content>
     <app-create-post-aside class="hidden md:block"></app-create-post-aside>
     <app-create-post-footer
+      (publish)="content.publish(1)"
+      (saveAsDraft)="content.publish(0)"
       class="lg:col-start-2 lg:col-end-[span_2]"
     ></app-create-post-footer>
   </div>

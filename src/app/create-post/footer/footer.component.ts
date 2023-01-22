@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 
 @Component({
   selector: 'app-create-post-footer',
@@ -6,4 +11,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./footer.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FooterComponent {}
+export class FooterComponent {
+  // PUBLIC PROPERTIES
+  @Output() readonly publish = new EventEmitter<void>();
+  @Output() readonly saveAsDraft = new EventEmitter<void>();
+}

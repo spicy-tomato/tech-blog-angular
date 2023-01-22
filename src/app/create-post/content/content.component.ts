@@ -5,7 +5,12 @@ import {
   Input,
   ViewChild,
 } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  NonNullableFormBuilder,
+  Validators,
+} from '@angular/forms';
 import {
   defaultEditorExtensions,
   TUI_EDITOR_EXTENSIONS,
@@ -20,6 +25,7 @@ import {
   switchMap,
   tap,
 } from 'rxjs';
+import { PostMode } from 'src/data/models';
 import { CreatePostStore, FocusableItem } from '../create-post.store';
 
 const databaseMockData: readonly string[] = [
@@ -72,13 +78,13 @@ export class ContentComponent {
   readonly form = this.fb.group({
     image: ['', Validators.required],
     title: ['Title', Validators.required],
-    tags: [[], Validators.required],
+    tags: [[] as string[], Validators.required],
     body: ['Body', Validators.required],
   });
 
   // CONSTRUCTOR
   constructor(
-    private readonly fb: FormBuilder,
+    private readonly fb: NonNullableFormBuilder,
     private readonly store: CreatePostStore
   ) {
     this.handleChangeCoverImage();
@@ -113,6 +119,10 @@ export class ContentComponent {
 
   onRemoveCoverImage(): void {
     this.form.patchValue({ image: '' });
+  }
+
+  publish(mode: PostMode): void {
+    this.store.publish({ ...this.form.value, mode });
   }
 
   // PRIVATE METHODS

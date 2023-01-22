@@ -3,6 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { APP_ENV, AppEnv } from 'src/core/config';
 import { Result } from 'src/core/data';
+import { PublishPostRequest } from 'src/data/requests';
 import { UploadCoverImageResponse } from 'src/data/responses';
 
 @Injectable({
@@ -25,5 +26,11 @@ export class PostService {
       this.url + 'cover-image',
       formData
     );
+  }
+
+  publish(
+    request: PublishPostRequest
+  ): Observable<Result<string>> {
+    return this.http.post<Result<string>>(this.url, request);
   }
 }

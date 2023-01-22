@@ -1,7 +1,9 @@
 <div
   class="wrapper h-article-form-actions-height flex items-center px-2 md:px-0"
 >
-  <button tuiButton appearance="primary">Publish</button>
+  <button tuiButton (click)="publish.emit()" appearance="primary">
+    Publish
+  </button>
   <button tuiButton class="ml-2">Save</button>
   <button tuiIconButton icon="tuiIconSettingsLarge" class="ml-2"></button>
   <button tuiButton>Revert</button>

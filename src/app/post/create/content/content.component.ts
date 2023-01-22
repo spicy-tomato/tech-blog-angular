@@ -26,7 +26,7 @@ import {
   tap,
 } from 'rxjs';
 import { PostMode } from 'src/data/models';
-import { CreatePostStore, FocusableItem } from '../create-post.store';
+import { CreatePostStore, FocusableItem } from '../post-create.store';
 
 const databaseMockData: readonly string[] = [
   `John Cleese`,
@@ -38,7 +38,7 @@ const databaseMockData: readonly string[] = [
 ];
 
 @Component({
-  selector: 'app-create-post-content',
+  selector: 'app-post-create-content',
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,

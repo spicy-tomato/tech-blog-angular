@@ -5,7 +5,6 @@ import { tap } from 'rxjs';
 import { LoginStore } from './login.store';
 
 @Component({
-  selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,

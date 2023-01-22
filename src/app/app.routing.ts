@@ -9,22 +9,22 @@ const routes: Routes = [
   {
     path: 'sign-out',
     loadChildren: async () =>
-      (await import('./sign-out/sign-out.module')).SignOutModule,
+      (await import('./user/sign-out/sign-out.module')).SignOutModule,
   },
   {
     path: 'login',
     loadChildren: async () =>
-      (await import('./login/login.module')).LoginModule,
+      (await import('./user/login/login.module')).LoginModule,
   },
   {
     path: 'register',
     loadChildren: async () =>
-      (await import('./register/register.module')).RegisterModule,
+      (await import('./user/register/register.module')).RegisterModule,
   },
   {
     path: 'new',
     loadChildren: async () =>
-      (await import('./create-post/create-post.module')).CreatePostModule,
+      (await import('./post/create/post-create.module')).CreatePostModule,
   },
 ];
 

@@ -20,9 +20,9 @@ import { AutosizeModule } from 'ngx-autosize';
 import { LocalImageUrlPipeModule } from 'src/core/pipes/local-image-url/local-image-url.module';
 import { AsideComponent } from './aside/aside.component';
 import { ContentComponent } from './content/content.component';
-import { CreatePostComponent } from './create-post.component';
-import { CreatePostRoutingModule } from './create-post.routing';
-import { CreatePostStore } from './create-post.store';
+import { CreatePostComponent } from './post-create.component';
+import { CreatePostRoutingModule } from './post-create.routing';
+import { CreatePostStore } from './post-create.store';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 

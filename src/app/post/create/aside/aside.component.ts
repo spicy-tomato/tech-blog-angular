@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { slideUp } from 'src/animations';
-import { CreatePostStore } from '../create-post.store';
+import { CreatePostStore } from '../post-create.store';
 
 @Component({
-  selector: 'app-create-post-aside',
+  selector: 'app-post-create-aside',
   templateUrl: './aside.component.html',
   styleUrls: ['./aside.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,

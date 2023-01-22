@@ -5,10 +5,10 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { CreatePostStore } from '../create-post.store';
+import { CreatePostStore } from '../post-create.store';
 
 @Component({
-  selector: 'app-create-post-header',
+  selector: 'app-post-create-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,

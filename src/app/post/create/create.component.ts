@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { tuiButtonOptionsProvider } from '@taiga-ui/core';
-import { CreatePostStore } from './post-create.store';
+import { CreatePostStore } from './create.store';
 
 @Component({
-  templateUrl: './post-create.component.html',
-  styleUrls: ['./post-create.component.less'],
+  templateUrl: './create.component.html',
+  styleUrls: ['./create.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     CreatePostStore,

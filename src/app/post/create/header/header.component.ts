@@ -5,7 +5,7 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { CreatePostStore } from '../post-create.store';
+import { CreatePostStore } from '../create.store';
 
 @Component({
   selector: 'app-post-create-header',

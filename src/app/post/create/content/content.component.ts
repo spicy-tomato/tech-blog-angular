@@ -26,7 +26,7 @@ import {
   tap,
 } from 'rxjs';
 import { PostMode } from 'src/data/models';
-import { CreatePostStore, FocusableItem } from '../post-create.store';
+import { CreatePostStore, FocusableItem } from '../create.store';
 
 const databaseMockData: readonly string[] = [
   `John Cleese`,

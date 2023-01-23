@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { slideUp } from 'src/animations';
-import { CreatePostStore } from '../post-create.store';
+import { CreatePostStore } from '../create.store';
 
 @Component({
   selector: 'app-post-create-aside',

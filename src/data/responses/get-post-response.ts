@@ -9,10 +9,11 @@ export type GetPostResponse = {
   trendingPoint: number;
   createdAt: Date;
   updatedAt: Date;
-  user: {
+  author: {
     fullName: string;
     userName: string;
     email: string;
+    image: string;
   };
   tags: string[];
 };

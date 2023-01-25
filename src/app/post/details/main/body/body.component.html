@@ -1,0 +1,78 @@
+<article
+  *ngrxLet="post$ as post"
+  class="bg-white rounded-lg shadow-card-border"
+>
+  <header *ngIf="post" class="top !pb-0">
+    <!-- Cover image -->
+    <div *ngIf="post.image" class="relative pt-[42%]">
+      <img
+        [src]="post.image"
+        alt="Cover image"
+        class="absolute inset-0 w-full h-full object-scale-down"
+      />
+    </div>
+    <div class="p-3 !pb-0 sm:p-5 md:p-12 md:pt-8 lg:px-16">
+      <!-- Author -->
+      <div class="flex">
+        <div>
+          <a [routerLink]="'/u/' + post.author.userName">
+            <img
+              [src]="post.author.image"
+              [alt]="post.author.userName"
+              class="w-10 h-10 rounded-full"
+            />
+          </a>
+        </div>
+        <div class="ml-3">
+          <a
+            [routerLink]="'/u/' + post.author.userName"
+            class="text-base font-bold"
+          >
+            {{ post.author.fullName }}
+          </a>
+          <p class="text-xs text-gray-500">
+            Posted on {{ post.createdAt | date : 'MMM dd' }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Title -->
+      <h1 class="mt-5 text-3xl font-bold md:text-4xl lg:text-5xl">
+        {{ post.title }}
+      </h1>
+
+      <!-- Tags -->
+      <div class="mt-2">
+        <a
+          tuiTag
+          *ngFor="let tag of post.tags"
+          [routerLink]="'/t/' + tag"
+          [value]="'#' + tag"
+          [hoverable]="true"
+        ></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Body -->
+  <div
+    *ngIf="post"
+    class="body p-3 text-lg sm:p-5 md:px-12 md:py-8 lg:px-16 lg:text-xl"
+  >
+    {{ post.body }}
+  </div>
+
+  <!-- Comments -->
+  <section
+    class="p-3 border-t border-gray-100 sm:p-5 md:px-12 md:py-8 lg:px-16"
+  >
+    <header class="flex justify-between">
+      <div class="flex items-center">
+        <h2 class="text-xl font-bold sm:text-2xl">Top comments (17)</h2>
+        <button tuiIconButton icon="tuiIconSortOff"></button>
+      </div>
+      <button tuiButton appearance="outline">Subscribe</button>
+    </header>
+    <div class="mt-6"></div>
+  </section>
+</article>

@@ -1,4 +1,4 @@
-<tui-scrollbar class="wrapper h-full bg-white rounded-md">
+<tui-scrollbar class="h-full bg-white rounded-md shadow-card-border">
   <form *ngIf="activeItemIndex === 0; else preview" [formGroup]="form">
     <div class="top">
       <div
@@ -106,10 +106,10 @@
           </div>
         </ng-container>
         <div>
-          <h1 class="mb-2 text-3xl font-bold md:text-4xl lg:text-5xl">
+          <h1 class="text-3xl font-bold md:text-4xl lg:text-5xl">
             {{ form.value['title'] }}
           </h1>
-          <div class="tags -ml-2 mt-1">
+          <div class="tags -ml-2 mt-3">
             <a
               tuiTag
               *ngFor="let tag of form.value['tags']"

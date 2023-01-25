@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { APP_ENV, AppEnv } from 'src/core/config';
 import { Result } from 'src/core/data';
 import { PublishPostRequest } from 'src/data/requests';
-import { UploadCoverImageResponse } from 'src/data/responses';
+import { GetPostResponse, UploadCoverImageResponse } from 'src/data/responses';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +19,10 @@ export class PostService {
   }
 
   // PUBLIC METHODS
+  publish(request: PublishPostRequest): Observable<Result<string>> {
+    return this.http.post<Result<string>>(this.url, request);
+  }
+
   uploadCoverImage(
     formData: FormData
   ): Observable<Result<UploadCoverImageResponse>> {
@@ -28,9 +32,7 @@ export class PostService {
     );
   }
 
-  publish(
-    request: PublishPostRequest
-  ): Observable<Result<string>> {
-    return this.http.post<Result<string>>(this.url, request);
+  get(postId: string): Observable<Result<GetPostResponse>> {
+    return this.http.get<Result<GetPostResponse>>(this.url + postId);
   }
 }

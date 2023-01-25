@@ -1,0 +1,22 @@
+<section
+  class="p-3 text-xl font-bold bg-gray-50 rounded-lg shadow-card-border sm:p-5 md:px-12 md:py-8 lg:px-16"
+>
+  <h2>Read next</h2>
+  <a *ngFor="let post of posts" [routerLink]="post.url" class="group block">
+    <div class="flex items-center">
+      <div>
+        <img
+          [src]="post.avatarUrl"
+          [alt]="post.author"
+          class="w-12 h-12 rounded-full md:w-16 md:h-16"
+        />
+      </div>
+      <div class="ml-4">
+        <h3 class="text-gray-800 group-hover:text-blue-800">{{ post.title }}</h3>
+        <p class="text-base text-gray-500 font-normal group-hover:text-blue-800">
+          {{ post.author }} - {{ post.createdAt | date : 'MMM dd' }}
+        </p>
+      </div>
+    </div>
+  </a>
+</section>

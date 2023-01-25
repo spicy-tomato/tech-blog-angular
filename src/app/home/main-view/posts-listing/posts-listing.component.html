@@ -1,6 +1,6 @@
 <article
   *ngFor="let post of posts"
-  class="mb-2 rounded-md bg-white overflow-hidden"
+  class="mb-2 rounded-md bg-white shadow-card-border overflow-hidden"
 >
   <a [routerLink]="post.url" class="block">
     <div *ngIf="post.image">

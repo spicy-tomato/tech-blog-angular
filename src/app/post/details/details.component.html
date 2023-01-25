@@ -1,8 +1,9 @@
-<div class="max-w-7xl grid grid-cols-[100%] mx-auto">
+<div
+  class="max-w-7xl grid grid-cols-[100%] mx-auto gap-4 md:grid-cols-[5rem_1fr] md:gap-x-2 lg:grid-cols-[5rem_7fr_3fr] lg:gap-4"
+>
   <app-post-details-left-side-bar
-    [post]="post"
-    class="hidden md:block"
+    class="hidden row-end-[span_2] md:block"
   ></app-post-details-left-side-bar>
-  <app-post-details-main [post]="post"></app-post-details-main>
+  <app-post-details-main></app-post-details-main>
   <app-post-details-right-side-bar></app-post-details-right-side-bar>
 </div>

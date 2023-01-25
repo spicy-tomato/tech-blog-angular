@@ -1,1 +1,25 @@
-<p>left-side-bar works!</p>
+<aside *ngrxLet="post$ as post" class="w-full sticky grid gap-4">
+  <ng-container *ngIf="post">
+    <div tuiHint="Like">
+      <button tuiIconButton icon="tuiIconHeartLarge" appearance="like"></button>
+      {{ post.likeCount }}
+    </div>
+    <div tuiHint="Jump to Comments">
+      <button
+        tuiIconButton
+        icon="tuiIconCommentLarge"
+        appearance="comment"
+      ></button>
+      {{ post.likeCount }}
+    </div>
+    <div tuiHint="Save">
+      <button
+        tuiIconButton
+        icon="tuiIconBookmarkLarge"
+        appearance="save"
+      ></button>
+      {{ post.viewCount }}
+    </div>
+    <button tuiIconButton icon="tuiIconMoreHorLarge" appearance="icon"></button>
+  </ng-container>
+</aside>

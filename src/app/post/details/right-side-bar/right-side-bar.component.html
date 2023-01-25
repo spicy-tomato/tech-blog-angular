@@ -1,1 +1,81 @@
-<p>right-side-bar works!</p>
+<aside *ngrxLet="post$ as post" class="w-full sticky grid gap-4 text-base">
+  <div *ngIf="post" class="p-4 !pt-0 border-t-[32px] border-black">
+    <div class="grid gap-4">
+      <div class="-mt-4">
+        <a [routerLink]="'/u/' + post.author.userName" class="flex items-end">
+          <img
+            [src]="post.author.image"
+            [alt]="post.author.userName"
+            class="w-12 h-12 rounded-full"
+          />
+          <div class="ml-2 text-xl font-bold">
+            {{ post.author.fullName }}
+          </div>
+        </a>
+      </div>
+
+      <div>
+        <button tuiButton class="w-full">Follow</button>
+      </div>
+
+      <div class="text-gray-600">
+        Self-taught Developer • I help you land your first dev job with posts on
+        programming and self-mastery • @theguspear 🐦
+      </div>
+
+      <ul class="grid gap-3">
+        <li>
+          <div class="key">Location</div>
+          <div class="value">Brisbane</div>
+        </li>
+        <li>
+          <div class="key">Education</div>
+          <div class="value">Self-taught</div>
+        </li>
+        <li>
+          <div class="key">Work</div>
+          <div class="value">Software Developer</div>
+        </li>
+        <li>
+          <div class="key">Joined</div>
+          <div class="value">
+            <time
+              datetime="2022-10-28T20:27:10Z"
+              class="date"
+              [dateTime]="post.createdAt"
+            >
+              Oct 29, 2022
+            </time>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div *ngIf="post">
+    <header class="px-4 py-3 font-bold border-b border-gray-100">
+      More from
+      <a tuiLink [routerLink]="'/u/' + post.author.userName" class="text-xl">
+        {{ post.author.fullName }}
+      </a>
+    </header>
+    <div>
+      <a
+        *ngFor="let p of morePosts"
+        [routerLink]="p.url"
+        class="group block p-4 hover:bg-white hover:text-blue-800"
+      >
+        {{ p.title }}
+        <div class="-ml-1 text-sm">
+          <span
+            *ngFor="let tag of p.tags; first as first"
+            [class.ml-1]="!first"
+            class="text-gray-500 group-hover:text-gray-600"
+          >
+            #{{ tag }}
+          </span>
+        </div>
+      </a>
+    </div>
+  </div>
+</aside>

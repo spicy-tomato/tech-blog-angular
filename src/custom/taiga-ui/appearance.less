@@ -1,5 +1,14 @@
 @import '~@taiga-ui/core/styles/taiga-ui-local';
 
+/* Override icon appearance */
+[tuiWrapper][data-appearance='icon'] {
+  @apply text-gray-600;
+
+  .wrapper-hover({
+    @apply bg-gray-200 text-gray-800;
+  });
+}
+
 /* Google button */
 [tuiWrapper][data-appearance='google'] {
   @apply bg-[#db4437] text-white;
@@ -28,4 +37,37 @@
   .wrapper-disabled({
     @apply bg-[#dfe3ee];
   });
+}
+
+/* Like button */
+[tuiWrapper][data-appearance='like'] {
+  @apply bg-transparent text-gray-600;
+
+  .wrapper-hover({
+    @apply bg-tui-error-bg text-tui-text-negative;
+  });
+}
+
+/* Comment button */
+[tuiWrapper][data-appearance='comment'] {
+  @apply bg-transparent text-gray-600;
+
+  .wrapper-hover({
+    @apply bg-tui-warning-bg text-tui-warning-fill;
+  });
+}
+
+/* Save button */
+[tuiWrapper][data-appearance='save'] {
+  @apply bg-transparent text-gray-600;
+
+  .wrapper-hover({
+    @apply bg-tui-info-bg-hover text-tui-text-link;
+  });
+}
+
+// Button Hint
+tui-hint[data-appearance='darkHint'] {
+  @apply w-min min-h-0 px-2 py-1 bg-gray-900;
+  @apply text-white text-xs text-center rounded-md;
 }

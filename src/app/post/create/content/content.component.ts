@@ -5,12 +5,7 @@ import {
   Input,
   ViewChild,
 } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  NonNullableFormBuilder,
-  Validators,
-} from '@angular/forms';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import {
   defaultEditorExtensions,
   TUI_EDITOR_EXTENSIONS,
@@ -77,9 +72,9 @@ export class ContentComponent {
   );
   readonly form = this.fb.group({
     image: ['', Validators.required],
-    title: ['Title', Validators.required],
+    title: ['', Validators.required],
     tags: [[] as string[], Validators.required],
-    body: ['Body', Validators.required],
+    body: ['', Validators.required],
   });
 
   // CONSTRUCTOR

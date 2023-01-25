@@ -28,16 +28,16 @@ const routes: Routes = [
           (await import('./user/register/register.module')).RegisterModule,
       },
       {
-        path: 'new',
-        loadChildren: async () =>
-          (await import('./post/create/create.module')).CreatePostModule,
-      },
-      {
         path: ':userName/:postId',
         loadChildren: async () =>
           (await import('./post/details/details.module')).PostDetailsModule,
       },
     ],
+  },
+  {
+    path: 'new',
+    loadChildren: async () =>
+      (await import('./post/create/create.module')).CreatePostModule,
   },
 ];
 

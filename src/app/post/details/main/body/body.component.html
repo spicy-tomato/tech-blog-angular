@@ -59,7 +59,7 @@
     *ngIf="post"
     class="body p-3 text-lg sm:p-5 md:px-12 md:py-8 lg:px-16 lg:text-xl"
   >
-    {{ post.body }}
+    <tui-editor-socket [content]="post.body"></tui-editor-socket>
   </div>
 
   <!-- Comments -->

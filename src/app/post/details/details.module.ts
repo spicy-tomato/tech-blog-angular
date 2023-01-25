@@ -10,9 +10,16 @@ import { RightSideBarComponent } from './right-side-bar/right-side-bar.component
 import { BodyComponent } from './main/body/body.component';
 import { ReadNextComponent } from './main/read-next/read-next.component';
 import { LetModule } from '@ngrx/component';
+import { TuiEditorSocketModule } from '@taiga-ui/addon-editor';
 
 const NGRX = [LetModule];
-const TAIGA_UI = [TuiTagModule, TuiButtonModule, TuiHintModule, TuiLinkModule];
+const TAIGA_UI = [
+  TuiButtonModule,
+  TuiEditorSocketModule,
+  TuiHintModule,
+  TuiLinkModule,
+  TuiTagModule,
+];
 
 @NgModule({
   imports: [CommonModule, PostDetailsRoutingModule, ...NGRX, ...TAIGA_UI],

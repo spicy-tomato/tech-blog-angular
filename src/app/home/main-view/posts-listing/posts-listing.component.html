@@ -1,109 +1,113 @@
-<article
-  *ngFor="let post of posts"
-  class="mb-2 rounded-md bg-white shadow-card-border overflow-hidden"
->
-  <a [routerLink]="post.url" class="block">
-    <div *ngIf="post.image">
-      <img [src]="post.image" [alt]="post.title" />
-    </div>
-    <div class="flex p-5">
-      <div class="mr-2">
-        <div class="w-8 h-8">
-          <img
-            [src]="post.author.image"
-            [alt]="post.author.name"
-            class="rounded-full"
-          />
-        </div>
+<ng-container *ngrxLet="posts$ as posts">
+  <article
+    *ngFor="let post of posts; first as first"
+    class="mb-2 rounded-md bg-white shadow-card-border overflow-hidden"
+  >
+    <a [routerLink]="post | url : 'post'" class="block">
+      <div *ngIf="first && post.image" class="bg-gray-200">
+        <img
+          [src]="post.image"
+          [alt]="post.title"
+          class="w-full max-h-72 object-scale-down"
+        />
       </div>
 
-      <div class="post-summary -mt-2">
-        <tui-hosted-dropdown tuiDropdownHover [content]="dropdown">
-          <a
-            tuiButton
-            tuiHostedDropdownHost
-            [routerLink]="'/u/' + post.author.id"
-            class="-ml-2 text-sm"
-          >
-            {{ post.author.name }}
-          </a>
-        </tui-hosted-dropdown>
-        <p class="text-xs">{{ post.createdAt | date : 'MMM d' }}</p>
-        <h3 class="mt-2 text-3xl font-bold hover:text-blue-800">
-          <a [routerLink]="post.url">{{ post.title }}</a>
-        </h3>
-        <div class="tags -ml-2 mt-1">
-          <a
-            tuiTag
-            *ngFor="let tag of post.tags"
-            [routerLink]="'/t/' + tag"
-            [value]="'#' + tag"
-            [hoverable]="true"
-          ></a>
+      <div class="flex p-5">
+        <div>
+          <tui-avatar
+            [avatarUrl]="post.author.image || null"
+            [text]="post.author.fullName"
+          ></tui-avatar>
         </div>
-        <div class="flex justify-between items-center mt-2">
-          <div class="left-buttons">
-            <button tuiButton icon="tuiIconHeart" class="-ml-2">
-              {{ post.reactionsCount }} Reactions
-            </button>
-            <button tuiButton icon="tuiIconComment">
-              {{ post.commentsCount }} Comments
-            </button>
-          </div>
-          <div class="flex items-center">
-            <p class="text-xs">{{ post.timeToRead }} min read</p>
-            <button
-              tuiIconButton
-              icon="tuiIconBookmark"
-              size="m"
-              class="ml-2"
-            ></button>
-          </div>
-        </div>
-      </div>
 
-      <ng-template #dropdown let-item>
-        <div
-          class="dropdown min-w-[250px] max-w-[360px] flex flex-col px-4 pb-4 text-base border-t-[32px] border-t-blue-700"
-        >
-          <div class="-mt-4">
-            <a [routerLink]="'/u/' + post.author.id" class="flex">
-              <span class="inline-block w-12 h-12 flex-shrink-0">
-                <img
-                  [src]="post.author.image"
-                  [alt]="post.author.name"
-                  class="rounded-full"
-                />
-              </span>
-              <span class="inline-block ml-2 mt-6 text-xl font-bold">
-                {{ post.author.name }}
-              </span>
+        <div class="post-summary -mt-2 ml-3 select-none">
+          <tui-hosted-dropdown tuiDropdownHover [content]="dropdown">
+            <a
+              tuiButton
+              tuiHostedDropdownHost
+              [routerLink]="post | url : 'user'"
+              class="-ml-2 text-sm"
+            >
+              {{ post.author.fullName }}
             </a>
+          </tui-hosted-dropdown>
+          <p class="text-xs">{{ post.createdAt | date : 'MMM d' }}</p>
+          <h3 class="mt-2 text-3xl font-bold hover:text-blue-800">
+            {{ post.title }}
+          </h3>
+          <div class="tags -ml-2 mt-1">
+            <a
+              tuiTag
+              *ngFor="let tag of post.tags"
+              [routerLink]="'/t/' + tag"
+              [value]="'#' + tag"
+              [hoverable]="true"
+            ></a>
           </div>
-          <div class="mt-4">
-            <button tuiButton appearance="primary" size="s" class="w-full">
-              Follow
-            </button>
-          </div>
-          <div class="mt-4 text-gray-600">Follow for dev, javascript</div>
-          <div class="mt-4">
-            <ul>
-              <li>
-                <div class="text-xs text-gray-700">Work</div>
-                <div class="value">FPT Software</div>
-              </li>
-              <li class="mt-2">
-                <div class="text-xs text-gray-700">Work</div>
-                <div class="value">FPT Software</div>
-              </li>
-              <li class="mt-2">
-                <div class="text-xs text-gray-700">Work</div>
-                <div class="value">FPT Software</div>
-              </li>
-            </ul>
+          <div class="flex justify-between items-center mt-2">
+            <div class="left-buttons">
+              <button tuiButton icon="tuiIconHeart" class="-ml-2">
+                {{ post.reactionsCount }} Reactions
+              </button>
+              <button tuiButton icon="tuiIconComment">
+                {{ post.commentsCount }} Comments
+              </button>
+            </div>
+            <div class="flex items-center">
+              <p class="text-xs">{{ post.timeToRead }} min read</p>
+              <button
+                tuiIconButton
+                icon="tuiIconBookmark"
+                size="m"
+                class="ml-2"
+              ></button>
+            </div>
           </div>
         </div>
-      </ng-template>
-    </div>
-  </a>
-</article>
+
+        <ng-template #dropdown let-item>
+          <div
+            class="dropdown min-w-[250px] max-w-[360px] flex flex-col px-4 pb-4 text-base border-t-[32px] border-t-blue-700"
+          >
+            <div class="-mt-4">
+              <a [routerLink]="'/u/' + post.author.userName" class="flex">
+                <span class="inline-block w-12 h-12 flex-shrink-0">
+                  <img
+                    [src]="post.author.image"
+                    [alt]="post.author.userName"
+                    class="rounded-full"
+                  />
+                </span>
+                <span class="inline-block ml-2 mt-6 text-xl font-bold">
+                  {{ post.author.fullName }}
+                </span>
+              </a>
+            </div>
+            <div class="mt-4">
+              <button tuiButton appearance="primary" size="s" class="w-full">
+                Follow
+              </button>
+            </div>
+            <div class="mt-4 text-gray-600">Follow for dev, javascript</div>
+            <div class="mt-4">
+              <ul>
+                <li>
+                  <div class="text-xs text-gray-700">Work</div>
+                  <div class="value">FPT Software</div>
+                </li>
+                <li class="mt-2">
+                  <div class="text-xs text-gray-700">Work</div>
+                  <div class="value">FPT Software</div>
+                </li>
+                <li class="mt-2">
+                  <div class="text-xs text-gray-700">Work</div>
+                  <div class="value">FPT Software</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </a>
+  </article>
+</ng-container>

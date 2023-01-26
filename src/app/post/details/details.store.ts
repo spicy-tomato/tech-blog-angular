@@ -20,7 +20,7 @@ export class DetailsPostStore extends ComponentStore<DetailsPostState> {
     params$.pipe(
       tap(() => this.patchState({ status: 'loading' })),
       switchMap((postId) =>
-        this.postService.get(postId).pipe(
+        this.postService.getById(postId).pipe(
           tapResponse(
             ({ data: post }) =>
               this.patchState({

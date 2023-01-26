@@ -28,7 +28,7 @@ const routes: Routes = [
           (await import('./user/register/register.module')).RegisterModule,
       },
       {
-        path: ':userName/:postId',
+        path: 'u/:userName/:postId',
         loadChildren: async () =>
           (await import('./post/details/details.module')).PostDetailsModule,
       },

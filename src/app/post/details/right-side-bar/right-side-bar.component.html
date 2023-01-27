@@ -2,7 +2,7 @@
   <div *ngIf="post" class="p-4 !pt-0 border-t-[32px] border-black">
     <div class="grid gap-4">
       <div class="-mt-4">
-        <a [routerLink]="'/u/' + post.author.userName" class="flex items-end">
+        <a [routerLink]="post | url : 'user'" class="flex items-end">
           <img
             [src]="post.author.image"
             [alt]="post.author.userName"
@@ -55,7 +55,7 @@
   <div *ngIf="post">
     <header class="px-4 py-3 font-bold border-b border-gray-100">
       More from
-      <a tuiLink [routerLink]="'/u/' + post.author.userName" class="text-xl">
+      <a tuiLink [routerLink]="post | url : 'user'" class="text-xl">
         {{ post.author.fullName }}
       </a>
     </header>

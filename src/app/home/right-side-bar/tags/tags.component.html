@@ -1,7 +1,7 @@
 <section *ngFor="let tag of tagTopics">
   <header>
     <h3>
-      <a [routerLink]="'/t/' + tag.tag"> #{{ tag.tag }} </a>
+      <a [routerLink]="tag.tag | url : 'tag'"> #{{ tag.tag }} </a>
     </h3>
   </header>
   <div *ngFor="let post of tag.posts">

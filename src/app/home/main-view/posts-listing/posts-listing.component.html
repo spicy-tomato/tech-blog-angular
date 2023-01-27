@@ -20,7 +20,7 @@
           ></tui-avatar>
         </div>
 
-        <div class="post-summary -mt-2 ml-3 select-none">
+        <div class="post-summary grow -mt-2 ml-3">
           <tui-hosted-dropdown tuiDropdownHover [content]="dropdown">
             <a
               tuiButton
@@ -39,7 +39,7 @@
             <a
               tuiTag
               *ngFor="let tag of post.tags"
-              [routerLink]="'/t/' + tag"
+              [routerLink]="tag | url : 'tag'"
               [value]="'#' + tag"
               [hoverable]="true"
             ></a>
@@ -50,7 +50,13 @@
                 {{ post.reactionsCount }} Reactions
               </button>
               <button tuiButton icon="tuiIconComment">
-                {{ post.commentsCount }} Comments
+                <ng-container [ngSwitch]="post.commentsCount">
+                  <ng-container *ngSwitchCase="0">Add comment</ng-container>
+                  <ng-container *ngSwitchCase="1">1 comment</ng-container>
+                  <ng-container *ngSwitchDefault>
+                    {{ post.commentsCount }} comments
+                  </ng-container>
+                </ng-container>
               </button>
             </div>
             <div class="flex items-center">
@@ -70,7 +76,7 @@
             class="dropdown min-w-[250px] max-w-[360px] flex flex-col px-4 pb-4 text-base border-t-[32px] border-t-blue-700"
           >
             <div class="-mt-4">
-              <a [routerLink]="'/u/' + post.author.userName" class="flex">
+              <a [routerLink]="post | url : 'user'" class="flex">
                 <span class="inline-block w-12 h-12 flex-shrink-0">
                   <img
                     [src]="post.author.image"

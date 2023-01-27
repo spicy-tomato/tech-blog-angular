@@ -11,6 +11,7 @@ import { BodyComponent } from './main/body/body.component';
 import { ReadNextComponent } from './main/read-next/read-next.component';
 import { LetModule } from '@ngrx/component';
 import { TuiEditorSocketModule } from '@taiga-ui/addon-editor';
+import { UrlPipeModule } from 'src/app/shared/pipes/url/url-pipe.module';
 
 const NGRX = [LetModule];
 const TAIGA_UI = [
@@ -22,7 +23,13 @@ const TAIGA_UI = [
 ];
 
 @NgModule({
-  imports: [CommonModule, PostDetailsRoutingModule, ...NGRX, ...TAIGA_UI],
+  imports: [
+    CommonModule,
+    PostDetailsRoutingModule,
+    UrlPipeModule,
+    ...NGRX,
+    ...TAIGA_UI,
+  ],
   declarations: [
     PostDetailsComponent,
     LeftSideBarComponent,

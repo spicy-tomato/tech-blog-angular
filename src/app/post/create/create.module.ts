@@ -17,7 +17,7 @@ import {
   TuiTagModule,
 } from '@taiga-ui/kit';
 import { AutosizeModule } from 'ngx-autosize';
-import { LocalImageUrlPipeModule } from 'src/core/pipes/local-image-url/local-image-url.module';
+import { UrlPipeModule } from 'src/app/shared/pipes/url/url-pipe.module';
 import { AsideComponent } from './aside/aside.component';
 import { ContentComponent } from './content/content.component';
 import { CreatePostComponent } from './create.component';
@@ -47,7 +47,7 @@ const TAIGA_UI = [
     ReactiveFormsModule,
     CreatePostRoutingModule,
     AutosizeModule,
-    LocalImageUrlPipeModule,
+    UrlPipeModule,
     ...NGRX,
     ...TAIGA_UI,
   ],

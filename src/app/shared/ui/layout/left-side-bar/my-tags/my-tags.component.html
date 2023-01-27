@@ -6,7 +6,7 @@
   <tui-scrollbar class="max-h-[42vh]">
     <ul>
       <li *ngFor="let tag of myTags">
-        <a tuiButton [routerLink]="'/tags/' + tag" class="list-item w-full">
+        <a tuiButton [routerLink]="tag | url : 'tag'" class="list-item w-full">
           #{{ tag }}
         </a>
       </li>

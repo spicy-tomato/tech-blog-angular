@@ -80,7 +80,7 @@
                     <a
                       tuiButton
                       size="l"
-                      [routerLink]="'/u/' + user.userName"
+                      [routerLink]="user | url : 'user'"
                       class="list-item username w-full"
                     >
                       <span class="block mt-1">

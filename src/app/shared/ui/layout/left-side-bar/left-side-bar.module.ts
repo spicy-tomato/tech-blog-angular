@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { LetModule } from '@ngrx/component';
 import { TuiButtonModule, TuiScrollbarModule } from '@taiga-ui/core';
+import { UrlPipeModule } from 'src/app/shared/pipes/url/url-pipe.module';
 import { LoginBoxComponent } from 'src/app/shared/ui/layout/left-side-bar/login-box/login-box.component';
 import { MyTagsComponent } from 'src/app/shared/ui/layout/left-side-bar/my-tags/my-tags.component';
 import { NavigationLinksComponent } from 'src/app/shared/ui/layout/left-side-bar/navigation-links/navigation-links.component';
@@ -15,7 +16,7 @@ const NGRX = [LetModule];
 const TAIGA_UI = [TuiButtonModule, TuiScrollbarModule];
 
 @NgModule({
-  imports: [CommonModule, RouterModule, ...NGRX, ...TAIGA_UI],
+  imports: [CommonModule, RouterModule, UrlPipeModule, ...NGRX, ...TAIGA_UI],
   declarations: [
     LeftSideBarComponent,
     LoginBoxComponent,

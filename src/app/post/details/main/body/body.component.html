@@ -15,7 +15,7 @@
       <!-- Author -->
       <div class="flex">
         <div>
-          <a [routerLink]="'/u/' + post.author.userName">
+          <a [routerLink]="post | url : 'user'">
             <img
               [src]="post.author.image"
               [alt]="post.author.userName"
@@ -24,10 +24,7 @@
           </a>
         </div>
         <div class="ml-3">
-          <a
-            [routerLink]="'/u/' + post.author.userName"
-            class="text-base font-bold"
-          >
+          <a [routerLink]="post | url : 'user'" class="text-base font-bold">
             {{ post.author.fullName }}
           </a>
           <p class="text-xs text-gray-500">
@@ -46,7 +43,7 @@
         <a
           tuiTag
           *ngFor="let tag of post.tags"
-          [routerLink]="'/t/' + tag"
+          [routerLink]="tag | url : 'tag'"
           [value]="'#' + tag"
           [hoverable]="true"
         ></a>

@@ -113,7 +113,7 @@
             <a
               tuiTag
               *ngFor="let tag of form.value['tags']"
-              [routerLink]="'/t/' + tag"
+              [routerLink]="tag | url : 'tag'"
               [value]="'#' + tag"
               [hoverable]="true"
             ></a>

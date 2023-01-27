@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ActivatedRoute, Route } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { tap } from 'rxjs';
 import { DetailsPostStore } from './details.store';
 
@@ -16,7 +16,11 @@ export class PostDetailsComponent {
       .pipe(
         tap((params) => {
           const postId = params['postId'];
+          const userName = params['userName'];
+          store.patchState({ userName });
+
           store.getPost(postId);
+          store.getMorePosts();
         })
       )
       .subscribe();

@@ -4,11 +4,7 @@ import { Observable } from 'rxjs';
 import { APP_ENV, AppEnv } from 'src/core/config';
 import { Result } from 'src/core/data';
 import { PublishPostRequest } from 'src/data/requests';
-import {
-  GetPostResponse,
-  GetPostsResponse,
-  UploadCoverImageResponse,
-} from 'src/data/responses';
+import { GetPostResponse, GetPostsResponse } from 'src/data/responses';
 
 @Injectable({
   providedIn: 'root',
@@ -23,8 +19,13 @@ export class PostService {
   }
 
   // PUBLIC METHODS
-  get(): Observable<Result<GetPostsResponse>> {
-    return this.http.get<Result<GetPostsResponse>>(this.url);
+  get(params?: {
+    userName?: string;
+    size?: number;
+  }): Observable<Result<GetPostsResponse>> {
+    return this.http.get<Result<GetPostsResponse>>(this.url, {
+      params,
+    });
   }
 
   getById(postId: string): Observable<Result<GetPostResponse>> {

@@ -48,17 +48,17 @@
     </div>
   </div>
 
-  <div *ngIf="post">
-    <header class="px-4 py-3 font-bold border-b border-gray-100">
-      More from
-      <a tuiLink [routerLink]="post | url : 'user'" class="text-xl">
-        {{ post.author.fullName }}
-      </a>
-    </header>
-    <div>
+  <div *ngrxLet="morePosts$ as morePosts">
+    <div *ngIf="post && morePosts.length">
+      <header class="px-4 py-3 font-bold border-b border-gray-100">
+        More from
+        <a tuiLink [routerLink]="post | url : 'user'" class="text-xl">
+          {{ post.author.fullName }}
+        </a>
+      </header>
       <a
         *ngFor="let p of morePosts"
-        [routerLink]="p.url"
+        [routerLink]="p | url : 'post'"
         class="group block p-4 hover:bg-white hover:text-blue-800"
       >
         {{ p.title }}

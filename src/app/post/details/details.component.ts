@@ -11,10 +11,7 @@ import { DetailsPostStore } from './details.store';
 })
 export class PostDetailsComponent {
   // CONSTRUCTOR
-  constructor(
-    private readonly route: ActivatedRoute,
-    private readonly store: DetailsPostStore
-  ) {
+  constructor(private readonly route: ActivatedRoute, store: DetailsPostStore) {
     this.route.params
       .pipe(
         tap((params) => {

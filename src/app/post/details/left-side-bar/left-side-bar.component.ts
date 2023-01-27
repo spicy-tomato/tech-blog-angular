@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import {
   tuiButtonOptionsProvider,
   tuiHintOptionsProvider,
@@ -25,6 +30,9 @@ import { DetailsPostStore } from '../details.store';
   ],
 })
 export class LeftSideBarComponent {
+  // OUTPUT
+  @Output() readonly scrollToComments = new EventEmitter<void>();
+
   // PUBLIC PROPERTIES
   readonly post$ = this.store.post$;
 

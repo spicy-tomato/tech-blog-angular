@@ -3,7 +3,8 @@
 >
   <app-post-details-left-side-bar
     class="hidden row-end-[span_2] md:block"
+    (scrollToComments)="main.scrollToComments()"
   ></app-post-details-left-side-bar>
-  <app-post-details-main></app-post-details-main>
+  <app-post-details-main #main></app-post-details-main>
   <app-post-details-right-side-bar></app-post-details-right-side-bar>
 </div>

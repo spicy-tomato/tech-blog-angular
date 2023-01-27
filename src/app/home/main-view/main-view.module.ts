@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { LetModule } from '@ngrx/component';
+import { TuiRepeatTimesModule } from '@taiga-ui/cdk';
 import {
   TuiButtonModule,
   TuiDropdownModule,
@@ -19,6 +20,7 @@ const TAIGA_UI = [
   TuiButtonModule,
   TuiDropdownModule,
   TuiHostedDropdownModule,
+  TuiRepeatTimesModule,
   TuiTagModule,
 ];
 

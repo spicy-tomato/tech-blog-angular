@@ -11,5 +11,6 @@ import { User } from 'src/data/models';
 export class AvatarComponent {
   // INPUT
   @Input() user?: User;
+  @Input() showSkeleton = false;
   @Input() size: TuiAvatarComponent['size'] = 's';
 }

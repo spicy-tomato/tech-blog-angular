@@ -22,6 +22,8 @@ import { HomeStore } from '../../home.store';
 export class PostsListingComponent {
   // PUBLIC PROPERTIES
   readonly posts$ = this.store.data$;
+  readonly status$ = this.store.status$;
+  // readonly 
 
   // CONSTRUCTOR
   constructor(private readonly store: HomeStore) {

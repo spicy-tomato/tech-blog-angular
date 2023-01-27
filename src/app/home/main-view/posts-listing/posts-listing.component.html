@@ -1,3 +1,30 @@
+<ng-container *ngrxLet="status$ as status">
+  <article
+    *tuiRepeatTimes="let _ of 6"
+    [class.hidden]="status !== 'loading'"
+    class="mb-2 rounded-md bg-white shadow-card-border"
+  >
+    <div>
+      <div class="flex p-5">
+        <div>
+          <app-avatar [showSkeleton]="true" size="m"></app-avatar>
+        </div>
+
+        <div class="post-summary grow ml-3">
+          <div class="tui-skeleton tui-skeleton_text text-sm">Author</div>
+          <p
+            class="tui-skeleton tui-skeleton_text tui-skeleton_short mt-1 text-xs"
+          >
+            Publish date
+          </p>
+          <h3 class="tui-skeleton tui-skeleton_text mt-2 text-3xl">Title</h3>
+          <div class="tui-skeleton mt-1">Tags</div>
+        </div>
+      </div>
+    </div>
+  </article>
+</ng-container>
+
 <ng-container *ngrxLet="posts$ as posts">
   <article
     *ngFor="let post of posts; first as first"
@@ -32,7 +59,7 @@
           <h3 class="mt-2 text-3xl font-bold hover:text-blue-800">
             {{ post.title }}
           </h3>
-          <div class="tags -ml-2 mt-1">
+          <div class="-ml-2 mt-1">
             <a
               tuiTag
               *ngFor="let tag of post.tags"

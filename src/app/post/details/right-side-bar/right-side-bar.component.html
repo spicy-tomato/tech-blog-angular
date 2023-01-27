@@ -3,11 +3,7 @@
     <div class="grid gap-4">
       <div class="-mt-4">
         <a [routerLink]="post | url : 'user'" class="flex items-end">
-          <img
-            [src]="post.author.image"
-            [alt]="post.author.userName"
-            class="w-12 h-12 rounded-full"
-          />
+          <app-avatar [user]="post.author" size="m"></app-avatar>
           <div class="ml-2 text-xl font-bold">
             {{ post.author.fullName }}
           </div>

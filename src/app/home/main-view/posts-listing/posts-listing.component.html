@@ -14,10 +14,7 @@
 
       <div class="flex p-5">
         <div>
-          <tui-avatar
-            [avatarUrl]="post.author.image || null"
-            [text]="post.author.fullName"
-          ></tui-avatar>
+          <app-avatar [user]="post.author"></app-avatar>
         </div>
 
         <div class="post-summary grow -mt-2 ml-3">
@@ -77,13 +74,7 @@
           >
             <div class="-mt-4">
               <a [routerLink]="post | url : 'user'" class="flex">
-                <span class="inline-block w-12 h-12 flex-shrink-0">
-                  <img
-                    [src]="post.author.image"
-                    [alt]="post.author.userName"
-                    class="rounded-full"
-                  />
-                </span>
+                <app-avatar [user]="post.author" size="m"></app-avatar>
                 <span class="inline-block ml-2 mt-6 text-xl font-bold">
                   {{ post.author.fullName }}
                 </span>

@@ -7,15 +7,15 @@ import {
   TuiDropdownModule,
   TuiHostedDropdownModule,
 } from '@taiga-ui/core';
-import { TuiAvatarModule, TuiTagModule } from '@taiga-ui/kit';
+import { TuiTagModule } from '@taiga-ui/kit';
 import { UrlPipeModule } from 'src/app/shared/pipes/url/url-pipe.module';
+import { AvatarModule } from 'src/app/shared/ui/components/avatar/avatar.module';
 import { MainViewComponent } from './main-view.component';
 import { PostsListingComponent } from './posts-listing/posts-listing.component';
 import { TabsComponent } from './tabs/tabs.component';
 
 const NGRX = [LetModule];
 const TAIGA_UI = [
-  TuiAvatarModule,
   TuiButtonModule,
   TuiDropdownModule,
   TuiHostedDropdownModule,
@@ -23,7 +23,14 @@ const TAIGA_UI = [
 ];
 
 @NgModule({
-  imports: [CommonModule, RouterModule, UrlPipeModule, ...NGRX, ...TAIGA_UI],
+  imports: [
+    CommonModule,
+    RouterModule,
+    AvatarModule,
+    UrlPipeModule,
+    ...NGRX,
+    ...TAIGA_UI,
+  ],
   declarations: [MainViewComponent, TabsComponent, PostsListingComponent],
   exports: [MainViewComponent],
 })

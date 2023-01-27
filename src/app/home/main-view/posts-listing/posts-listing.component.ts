@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { tuiButtonOptionsProvider } from '@taiga-ui/core';
-import { tuiAvatarOptionsProvider, tuiTagOptionsProvider } from '@taiga-ui/kit';
+import { tuiTagOptionsProvider } from '@taiga-ui/kit';
 import { HomeStore } from '../../home.store';
 
 @Component({
@@ -10,17 +10,12 @@ import { HomeStore } from '../../home.store';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     tuiButtonOptionsProvider({
-      size: 'xs',
+      size: 's',
       appearance: 'flat',
     }),
     tuiTagOptionsProvider({
       size: 'm',
       status: 'custom',
-    }),
-    tuiAvatarOptionsProvider({
-      autoColor: true,
-      rounded: true,
-      size: 's',
     }),
   ],
 })

@@ -65,11 +65,7 @@
               [tuiDropdownOffset]="9"
             >
               <button>
-                <tui-avatar
-                  [avatarUrl]="user.image ?? null"
-                  [rounded]="true"
-                  size="s"
-                ></tui-avatar>
+                <app-avatar [user]="user" size="m"></app-avatar>
               </button>
             </tui-hosted-dropdown>
 

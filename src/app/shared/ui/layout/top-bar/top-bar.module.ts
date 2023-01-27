@@ -11,15 +11,15 @@ import {
   TuiLoaderModule,
   TuiTextfieldControllerModule,
 } from '@taiga-ui/core';
-import { TuiAvatarModule, TuiInputModule } from '@taiga-ui/kit';
+import { TuiInputModule } from '@taiga-ui/kit';
 import { UrlPipeModule } from 'src/app/shared/pipes/url/url-pipe.module';
+import { AvatarModule } from 'src/app/shared/ui/components/avatar/avatar.module';
 import { LeftSideBarModule } from 'src/app/shared/ui/layout/left-side-bar/left-side-bar.module';
 import { TopBarComponent } from './top-bar.component';
 
 const NGRX = [LetModule];
 const TAIGA_UI = [
   TuiActiveZoneModule,
-  TuiAvatarModule,
   TuiButtonModule,
   TuiHostedDropdownModule,
   TuiInputModule,
@@ -33,6 +33,7 @@ const TAIGA_UI = [
     CommonModule,
     RouterModule,
     FormsModule,
+    AvatarModule,
     UrlPipeModule,
     LeftSideBarModule,
     ...NGRX,

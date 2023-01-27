@@ -4,6 +4,7 @@ import {
   EventEmitter,
   Output,
 } from '@angular/core';
+import { CreatePostStore } from '../create.store';
 
 @Component({
   selector: 'app-post-create-footer',
@@ -12,7 +13,14 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent {
-  // PUBLIC PROPERTIES
+  // OUTPUT
   @Output() readonly publish = new EventEmitter<void>();
   @Output() readonly saveAsDraft = new EventEmitter<void>();
+
+  // PUBLIC PROPERTIES
+  readonly publishStatus$ = this.store.publishStatus$;
+  readonly disablePublish$ = this.store.disablePublish$;
+
+  // CONSTRUCTOR
+  constructor(private readonly store: CreatePostStore) {}
 }

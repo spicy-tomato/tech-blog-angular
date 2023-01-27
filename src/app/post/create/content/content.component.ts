@@ -6,10 +6,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
-import {
-  defaultEditorExtensions,
-  TUI_EDITOR_EXTENSIONS,
-} from '@taiga-ui/addon-editor';
 import { tuiTagOptionsProvider } from '@taiga-ui/kit';
 import {
   delay,
@@ -42,16 +38,11 @@ const databaseMockData: readonly string[] = [
       size: 'l',
       status: 'custom',
     }),
-    {
-      provide: TUI_EDITOR_EXTENSIONS,
-      useValue: defaultEditorExtensions,
-    },
   ],
 })
 export class ContentComponent {
   // INPUT
-  @Input()
-  activeItemIndex = 0;
+  @Input() activeItemIndex = 0;
 
   // VIEWCHILD
   @ViewChild('title') title!: ElementRef<HTMLDivElement>;
@@ -71,9 +62,9 @@ export class ContentComponent {
     startWith(databaseMockData)
   );
   readonly form = this.fb.group({
-    image: ['', Validators.required],
+    image: [''],
     title: ['', Validators.required],
-    tags: [[] as string[], Validators.required],
+    tags: [[] as string[]],
     body: ['', Validators.required],
   });
 
@@ -83,6 +74,7 @@ export class ContentComponent {
     private readonly store: CreatePostStore
   ) {
     this.handleChangeCoverImage();
+    this.handleFormValidationStatusChange();
   }
 
   // PUBLIC METHODS
@@ -104,11 +96,9 @@ export class ContentComponent {
   }
 
   onFileChange(e: Event): void {
-    const formData = new FormData();
     const image = (e.target as HTMLInputElement)?.files?.[0];
     if (image) {
-      formData.append('file', image, image.name);
-      this.store.uploadCoverImage(formData);
+      this.store.uploadCoverImage(image);
     }
   }
 
@@ -124,6 +114,12 @@ export class ContentComponent {
   private handleChangeCoverImage(): void {
     this.coverImageUrl$
       .pipe(tap((image) => this.form.patchValue({ image })))
+      .subscribe();
+  }
+
+  private handleFormValidationStatusChange(): void {
+    this.form.statusChanges
+      .pipe(tap((status) => this.store.togglePublish(status === 'INVALID')))
       .subscribe();
   }
 

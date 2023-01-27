@@ -23,7 +23,6 @@ export class PostService {
   }
 
   // PUBLIC METHODS
-
   get(): Observable<Result<GetPostsResponse>> {
     return this.http.get<Result<GetPostsResponse>>(this.url);
   }
@@ -34,14 +33,5 @@ export class PostService {
 
   publish(request: PublishPostRequest): Observable<Result<string>> {
     return this.http.post<Result<string>>(this.url, request);
-  }
-
-  uploadCoverImage(
-    formData: FormData
-  ): Observable<Result<UploadCoverImageResponse>> {
-    return this.http.post<Result<UploadCoverImageResponse>>(
-      this.url + 'cover-image',
-      formData
-    );
   }
 }

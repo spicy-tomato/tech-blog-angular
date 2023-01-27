@@ -1,9 +1,18 @@
 <div
   class="wrapper h-article-form-actions-height flex items-center px-2 md:px-0"
 >
-  <button tuiButton (click)="publish.emit()" appearance="primary">
-    Publish
-  </button>
+  <ng-container *ngrxLet="disablePublish$ as disable">
+    <button
+      *ngrxLet="publishStatus$ as status"
+      tuiButton
+      (click)="publish.emit()"
+      [showLoader]="status === 'loading'"
+      [disabled]="disable"
+      appearance="primary"
+    >
+      Publish
+    </button>
+  </ng-container>
   <button tuiButton class="ml-2">Save</button>
   <button tuiIconButton icon="tuiIconSettingsLarge" class="ml-2"></button>
   <button tuiButton>Revert</button>

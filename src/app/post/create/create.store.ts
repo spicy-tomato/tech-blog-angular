@@ -4,6 +4,7 @@ import { ComponentStore, tapResponse } from '@ngrx/component-store';
 import { switchMap, tap } from 'rxjs';
 import { Status } from 'src/core/data';
 import { PublishPostRequest } from 'src/data/requests';
+import { ImageService } from 'src/data/services/image.service';
 import { PostService } from 'src/data/services/post.service';
 
 export type FocusableItem = 'title' | 'tags' | 'body' | null;
@@ -14,6 +15,7 @@ type CreatePostState = {
   coverImageUrl: string;
   uploadCoverImageStatus: Status;
   publishStatus: Status;
+  disablePublish: boolean;
 };
 
 @Injectable()
@@ -25,13 +27,15 @@ export class CreatePostStore extends ComponentStore<CreatePostState> {
   readonly uploadCoverImageStatus$ = this.select(
     (s) => s.uploadCoverImageStatus
   );
+  readonly publishStatus$ = this.select((s) => s.publishStatus);
+  readonly disablePublish$ = this.select((s) => s.disablePublish);
 
   // EFFECTS
-  readonly uploadCoverImage = this.effect<FormData>((params$) =>
+  readonly uploadCoverImage = this.effect<File>((params$) =>
     params$.pipe(
       tap(() => this.patchState({ uploadCoverImageStatus: 'loading' })),
-      switchMap((formData) =>
-        this.postService.uploadCoverImage(formData).pipe(
+      switchMap((file) =>
+        this.imageService.uploadCoverImage(file).pipe(
           tapResponse(
             ({ data }) =>
               this.patchState({
@@ -69,16 +73,22 @@ export class CreatePostStore extends ComponentStore<CreatePostState> {
   // CONSTRUCTOR
   constructor(
     private readonly router: Router,
-    private readonly postService: PostService
+    private readonly postService: PostService,
+    private readonly imageService: ImageService
   ) {
     super(<CreatePostState>{
       focusItem: null,
       helpYPosition: 0,
+      disablePublish: true,
     });
   }
 
   // PUBLIC METHODS
   changeFocusItem(focusItem: FocusableItem, helpYPosition = 0): void {
     this.patchState({ focusItem, helpYPosition });
+  }
+
+  togglePublish(disablePublish: boolean): void {
+    this.patchState({ disablePublish });
   }
 }

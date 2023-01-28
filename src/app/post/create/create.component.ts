@@ -8,10 +8,7 @@ import { CreatePostStore } from './create.store';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     CreatePostStore,
-    tuiButtonOptionsProvider({
-      appearance: 'flat',
-      size: 'm',
-    }),
+    tuiButtonOptionsProvider({ appearance: 'flat' }),
   ],
 })
 export class CreatePostComponent {

@@ -1,26 +1,32 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { tap } from 'rxjs';
-import { DetailsPostStore } from './details.store';
+import { PostDetailsStore } from './details.store';
 
 @Component({
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [DetailsPostStore],
+  providers: [PostDetailsStore],
 })
-export class PostDetailsComponent {
+export class PostDetailsComponent implements OnInit {
   // CONSTRUCTOR
-  constructor(private readonly route: ActivatedRoute, store: DetailsPostStore) {
+  constructor(
+    private readonly route: ActivatedRoute,
+    private readonly store: PostDetailsStore
+  ) {}
+
+  // LIFECYCLE
+  ngOnInit(): void {
     this.route.params
       .pipe(
         tap((params) => {
           const postId = params['postId'];
           const userName = params['userName'];
-          store.patchState({ userName });
+          this.store.patchState({ userName });
 
-          store.getPost(postId);
-          store.getMorePosts();
+          this.store.getPost(postId);
+          this.store.getMorePosts();
         })
       )
       .subscribe();

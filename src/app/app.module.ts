@@ -12,6 +12,7 @@ import {
 } from '@taiga-ui/addon-editor';
 import {
   TuiAlertModule,
+  tuiButtonOptionsProvider,
   TuiDialogModule,
   TuiRootModule,
   TUI_SANITIZER,
@@ -65,9 +66,9 @@ const NGRX = [
       useValue: defaultEditorExtensions,
     },
     {
-        provide: TUI_IMAGE_LOADER,
-        useFactory: imageLoader,
-        deps: [ImageService],
+      provide: TUI_IMAGE_LOADER,
+      useFactory: imageLoader,
+      deps: [ImageService],
     },
     {
       provide: TUI_VALIDATION_ERRORS,
@@ -80,6 +81,7 @@ const NGRX = [
     //   provide: TUI_LANGUAGE,
     //   useValue: of(TUI_VIETNAMESE_LANGUAGE),
     // },
+    tuiButtonOptionsProvider({ size: 'm' }),
   ],
   bootstrap: [AppComponent],
 })

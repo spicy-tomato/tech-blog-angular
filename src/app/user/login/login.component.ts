@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
-import { tuiButtonOptionsProvider } from '@taiga-ui/core';
 import { tap } from 'rxjs';
 import { LoginStore } from './login.store';
 
@@ -8,7 +7,7 @@ import { LoginStore } from './login.store';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [LoginStore, tuiButtonOptionsProvider({ size: 'm' })],
+  providers: [LoginStore],
 })
 export class LoginComponent {
   // PUBLIC PROPERTIES

@@ -23,9 +23,7 @@ export class PostService {
     userName?: string;
     size?: number;
   }): Observable<Result<GetPostsResponse>> {
-    return this.http.get<Result<GetPostsResponse>>(this.url, {
-      params,
-    });
+    return this.http.get<Result<GetPostsResponse>>(this.url, { params });
   }
 
   getById(postId: string): Observable<Result<GetPostResponse>> {

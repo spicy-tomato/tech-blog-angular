@@ -6,7 +6,7 @@ import { PostSummary } from 'src/data/models';
 import { GetPostResponse } from 'src/data/responses';
 import { PostService } from 'src/data/services/post.service';
 
-type DetailsPostState = {
+type PostDetailsState = {
   post: GetPostResponse | null;
   userName: string;
   morePost: PostSummary[];
@@ -15,7 +15,7 @@ type DetailsPostState = {
 };
 
 @Injectable()
-export class DetailsPostStore extends ComponentStore<DetailsPostState> {
+export class PostDetailsStore extends ComponentStore<PostDetailsState> {
   // PUBLIC PROPERTIES
   readonly post$ = this.select((s) => s.post);
   readonly morePost$ = this.select((s) => s.morePost);
@@ -67,7 +67,7 @@ export class DetailsPostStore extends ComponentStore<DetailsPostState> {
 
   // CONSTRUCTOR
   constructor(private readonly postService: PostService) {
-    super(<DetailsPostState>{
+    super(<PostDetailsState>{
       morePost: [] as PostSummary[],
     });
   }

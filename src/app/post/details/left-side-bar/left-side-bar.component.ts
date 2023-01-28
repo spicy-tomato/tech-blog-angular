@@ -8,7 +8,7 @@ import {
   tuiButtonOptionsProvider,
   tuiHintOptionsProvider,
 } from '@taiga-ui/core';
-import { DetailsPostStore } from '../details.store';
+import { PostDetailsStore } from '../details.store';
 
 @Component({
   selector: 'app-post-details-left-side-bar',
@@ -19,7 +19,6 @@ import { DetailsPostStore } from '../details.store';
     tuiButtonOptionsProvider({
       appearance: 'flat',
       shape: 'rounded',
-      size: 'm',
     }),
     tuiHintOptionsProvider({
       showDelay: 50,
@@ -37,5 +36,5 @@ export class LeftSideBarComponent {
   readonly post$ = this.store.post$;
 
   // CONSTRUCTOR
-  constructor(private readonly store: DetailsPostStore) {}
+  constructor(private readonly store: PostDetailsStore) {}
 }

@@ -10,7 +10,7 @@
           <app-avatar [showSkeleton]="true" size="m"></app-avatar>
         </div>
 
-        <div class="post-summary grow ml-3">
+        <div class="grow ml-3">
           <div class="tui-skeleton tui-skeleton_text text-sm">Author</div>
           <p
             class="tui-skeleton tui-skeleton_text tui-skeleton_short mt-1 text-xs"
@@ -26,112 +26,7 @@
 </ng-container>
 
 <ng-container *ngrxLet="posts$ as posts">
-  <article
-    *ngFor="let post of posts; first as first"
-    class="mb-2 rounded-md bg-white shadow-card-border overflow-hidden"
-  >
-    <a [routerLink]="post | url : 'post'" class="block">
-      <div *ngIf="first && post.image" class="bg-gray-200">
-        <img
-          [src]="post.image"
-          [alt]="post.title"
-          class="w-full max-h-72 object-scale-down"
-        />
-      </div>
-
-      <div class="flex p-5">
-        <div>
-          <app-avatar [user]="post.author"></app-avatar>
-        </div>
-
-        <div class="post-summary grow -mt-2 ml-3">
-          <tui-hosted-dropdown tuiDropdownHover [content]="dropdown">
-            <a
-              tuiButton
-              tuiHostedDropdownHost
-              [routerLink]="post | url : 'user'"
-              class="-ml-2 text-sm"
-            >
-              {{ post.author.fullName }}
-            </a>
-          </tui-hosted-dropdown>
-          <p class="text-xs">{{ post.createdAt | date : 'MMM d' }}</p>
-          <h3 class="mt-2 text-3xl font-bold hover:text-blue-800">
-            {{ post.title }}
-          </h3>
-          <div class="-ml-2 mt-1">
-            <a
-              tuiTag
-              *ngFor="let tag of post.tags"
-              [routerLink]="tag | url : 'tag'"
-              [value]="'#' + tag"
-              [hoverable]="true"
-            ></a>
-          </div>
-          <div class="flex justify-between items-center mt-2">
-            <div class="left-buttons">
-              <button tuiButton icon="tuiIconHeart" class="-ml-2">
-                {{ post.reactionsCount }} Reactions
-              </button>
-              <button tuiButton icon="tuiIconComment">
-                <ng-container [ngSwitch]="post.commentsCount">
-                  <ng-container *ngSwitchCase="0">Add comment</ng-container>
-                  <ng-container *ngSwitchCase="1">1 comment</ng-container>
-                  <ng-container *ngSwitchDefault>
-                    {{ post.commentsCount }} comments
-                  </ng-container>
-                </ng-container>
-              </button>
-            </div>
-            <div class="flex items-center">
-              <p class="text-xs">{{ post.timeToRead }} min read</p>
-              <button
-                tuiIconButton
-                icon="tuiIconBookmark"
-                size="m"
-                class="ml-2"
-              ></button>
-            </div>
-          </div>
-        </div>
-
-        <ng-template #dropdown let-item>
-          <div
-            class="dropdown min-w-[250px] max-w-[360px] flex flex-col px-4 pb-4 text-base border-t-[32px] border-t-blue-700"
-          >
-            <div class="-mt-4">
-              <a [routerLink]="post | url : 'user'" class="flex">
-                <app-avatar [user]="post.author" size="m"></app-avatar>
-                <span class="inline-block ml-2 mt-6 text-xl font-bold">
-                  {{ post.author.fullName }}
-                </span>
-              </a>
-            </div>
-            <div class="mt-4">
-              <button tuiButton appearance="primary" size="s" class="w-full">
-                Follow
-              </button>
-            </div>
-            <div class="mt-4 text-gray-600">Follow for dev, javascript</div>
-            <div class="mt-4">
-              <ul>
-                <li>
-                  <div class="text-xs text-gray-700">Work</div>
-                  <div class="value">FPT Software</div>
-                </li>
-                <li class="mt-2">
-                  <div class="text-xs text-gray-700">Work</div>
-                  <div class="value">FPT Software</div>
-                </li>
-                <li class="mt-2">
-                  <div class="text-xs text-gray-700">Work</div>
-                  <div class="value">FPT Software</div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </ng-template>
-      </div>
-    </a>
+  <article *ngFor="let post of posts; first as first" class="mb-2">
+    <app-post-card [post]="post" [displayImage]="first"></app-post-card>
   </article>
 </ng-container>

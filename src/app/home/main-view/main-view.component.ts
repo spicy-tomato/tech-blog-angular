@@ -6,6 +6,6 @@ import { tuiButtonOptionsProvider } from '@taiga-ui/core';
   templateUrl: './main-view.component.html',
   styleUrls: ['./main-view.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [tuiButtonOptionsProvider({ appearance: 'flat' })],
+  providers: [tuiButtonOptionsProvider({ size: 'm', appearance: 'flat' })],
 })
 export class MainViewComponent {}

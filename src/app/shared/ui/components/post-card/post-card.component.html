@@ -1,5 +1,8 @@
-<div class="rounded-md bg-white shadow-card-border overflow-hidden">
-  <a [routerLink]="post | url : 'post'" class="block">
+<article class="rounded-md bg-white shadow-card-border overflow-hidden">
+  <a
+    [routerLink]="allCardNavigate ? (post | url : 'post') : null"
+    class="block"
+  >
     <div *ngIf="displayImage && post.image" class="bg-gray-200">
       <img
         [src]="post.image"
@@ -8,59 +11,68 @@
       />
     </div>
 
-    <div class="flex p-5">
-      <div>
-        <app-avatar [user]="post.author"></app-avatar>
-      </div>
-
-      <div class="post-summary grow -mt-1 ml-3">
-        <tui-hosted-dropdown tuiDropdownHover [content]="dropdown">
-          <a
-            tuiButton
-            tuiHostedDropdownHost
-            [routerLink]="post | url : 'user'"
-            size="xs"
-            class="-ml-2 !text-sm"
-          >
-            {{ post.author.fullName }}
-          </a>
-        </tui-hosted-dropdown>
-        <p class="-mt-1 text-xs">{{ post.createdAt | date : 'MMM d' }}</p>
-        <h3 class="mt-2 text-3xl font-bold hover:text-blue-800">
-          {{ post.title }}
-        </h3>
-        <div class="-ml-2 mt-1">
-          <a
-            tuiTag
-            *ngFor="let tag of post.tags"
-            [routerLink]="tag | url : 'tag'"
-            [value]="'#' + tag"
-            [hoverable]="true"
-          ></a>
-        </div>
-        <div class="flex justify-between items-center mt-2">
-          <div class="left-buttons">
-            <button tuiButton icon="tuiIconHeart" class="-ml-2">
-              {{ post.reactionsCount }} Reactions
-            </button>
-            <button tuiButton icon="tuiIconComment">
-              <ng-container [ngSwitch]="post.commentsCount">
-                <ng-container *ngSwitchCase="0">Add comment</ng-container>
-                <ng-container *ngSwitchCase="1">1 comment</ng-container>
-                <ng-container *ngSwitchDefault>
-                  {{ post.commentsCount }} comments
-                </ng-container>
-              </ng-container>
-            </button>
+    <div class="p-5">
+      <div class="post-summary">
+        <div class="flex items-center">
+          <app-avatar [user]="post.author"></app-avatar>
+          <div class="ml-2">
+            <tui-hosted-dropdown tuiDropdownHover [content]="dropdown">
+              <a
+                tuiButton
+                tuiHostedDropdownHost
+                [routerLink]="post | url : 'user'"
+                size="xs"
+                class="-ml-2 -mt-1 !text-sm"
+              >
+                {{ post.author.fullName }}
+              </a>
+            </tui-hosted-dropdown>
+            <p class="-mt-1 text-xs">{{ post.createdAt | date : 'MMM d' }}</p>
           </div>
-          <div class="flex items-center">
-            <p class="text-xs">{{ post.timeToRead }} min read</p>
-            <button
-              tuiIconButton
-              icon="tuiIconBookmark"
-              size="m"
-              class="ml-2"
-            ></button>
+        </div>
+
+        <div class="md:pl-10">
+          <h3
+            class="mt-2 text-xl font-bold sm:text-2xl"
+            [class.sm:text-3xl]="displayImage"
+          >
+            <a [routerLink]="post | url : 'post'" class="hover:text-blue-800">
+              {{ post.title }}
+            </a>
+          </h3>
+          <div class="-ml-2 mt-1">
+            <a
+              tuiTag
+              *ngFor="let tag of post.tags"
+              [routerLink]="tag | url : 'tag'"
+              [value]="'#' + tag"
+              [hoverable]="true"
+            ></a>
+          </div>
+          <div class="flex justify-between items-center mt-2">
+            <div class="left-buttons">
+              <button tuiButton icon="tuiIconHeart" class="-ml-2">
+                {{ post.reactionsCount }} Reactions
+              </button>
+              <button tuiButton icon="tuiIconComment">
+                <ng-container [ngSwitch]="post.commentsCount">
+                  <ng-container *ngSwitchCase="0">Add comment</ng-container>
+                  <ng-container *ngSwitchCase="1">1 comment</ng-container>
+                  <ng-container *ngSwitchDefault>
+                    {{ post.commentsCount }} comments
+                  </ng-container>
+                </ng-container>
+              </button>
+            </div>
+            <div class="flex items-center">
+              <p class="text-xs">{{ post.timeToRead }} min read</p>
+              <button
+                tuiIconButton
+                icon="tuiIconBookmark"
+                size="m"
+                class="ml-2"
+              ></button>
+            </div>
           </div>
         </div>
       </div>
@@ -103,4 +115,4 @@
       </ng-template>
     </div>
   </a>
-</div>
+</article>

@@ -26,7 +26,7 @@
 </ng-container>
 
 <ng-container *ngrxLet="posts$ as posts">
-  <article *ngFor="let post of posts; first as first" class="mb-2">
+  <div *ngFor="let post of posts; first as first" class="mb-2">
     <app-post-card [post]="post" [displayImage]="first"></app-post-card>
-  </article>
+  </div>
 </ng-container>

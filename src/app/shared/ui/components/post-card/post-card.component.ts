@@ -23,4 +23,5 @@ export class PostCardComponent {
   // INPUT
   @Input() post!: PostSummary;
   @Input() displayImage = false;
+  @Input() allCardNavigate = true;
 }

@@ -48,7 +48,7 @@
     </div>
   </div>
 
-  <div *ngrxLet="morePosts$ as morePosts">
+  <ng-container *ngrxLet="morePosts$ as morePosts">
     <div *ngIf="post && morePosts.length">
       <header class="px-4 py-3 font-bold border-b border-gray-100">
         More from
@@ -73,5 +73,5 @@
         </div>
       </a>
     </div>
-  </div>
+  </ng-container>
 </aside>

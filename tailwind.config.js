@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       boxShadow: {
         'card-border': '0 0 0 1px var(--card-border)',
+        'card-secondary-border': '0 0 0 1px var(--card-secondary-border)',
       },
       colors: {
         // UTC

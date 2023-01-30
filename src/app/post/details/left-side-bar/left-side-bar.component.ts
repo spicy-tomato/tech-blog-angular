@@ -19,6 +19,7 @@ import { PostDetailsStore } from '../details.store';
     tuiButtonOptionsProvider({
       appearance: 'flat',
       shape: 'rounded',
+      size: 'm',
     }),
     tuiHintOptionsProvider({
       showDelay: 50,

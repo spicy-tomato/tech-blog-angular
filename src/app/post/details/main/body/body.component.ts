@@ -14,7 +14,7 @@ import { PostDetailsStore } from '../../details.store';
   styleUrls: ['./body.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    tuiButtonOptionsProvider({ appearance: 'flat' }),
+    tuiButtonOptionsProvider({ size: 'm', appearance: 'flat' }),
     tuiTagOptionsProvider({
       size: 'l',
       status: 'custom',

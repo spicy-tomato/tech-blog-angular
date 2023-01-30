@@ -1,12 +1,14 @@
-<section *ngFor="let tag of tagTopics">
+<app-topic-card *ngFor="let tag of tagTopics" class="mt-4">
   <header>
-    <h3>
-      <a [routerLink]="tag.tag | url : 'tag'"> #{{ tag.tag }} </a>
+    <h3 class="text-xl">
+      <a [routerLink]="tag.tag | url : 'tag'" class="text-gray-700">
+        #{{ tag.tag }}
+      </a>
     </h3>
   </header>
   <div *ngFor="let post of tag.posts">
     <a [routerLink]="post.url">
-      <div>{{ post.title }}</div>
+      <div class="text-gray-700">{{ post.title }}</div>
       <tui-tag
         *ngIf="post.isNew; else comment"
         value="New"
@@ -15,8 +17,10 @@
         class="bg-[rgb(252,211,77)]"
       ></tui-tag>
       <ng-template #comment>
-        <div class="text-gray-600">{{ post.commentsCount }} comments</div>
+        <div class="text-sm text-gray-600">
+          {{ post.commentsCount }} comments
+        </div>
       </ng-template>
     </a>
   </div>
-</section>
+</app-topic-card>

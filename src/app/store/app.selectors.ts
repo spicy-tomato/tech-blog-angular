@@ -7,5 +7,12 @@ export class AppSelector {
     createFeatureSelector<AppState>(appFeatureKey);
 
   static readonly user = createSelector(this.selector, (state) => state.user);
-  static readonly status = createSelector(this.selector, (state) => state.status);
+  static readonly status = createSelector(
+    this.selector,
+    (state) => state.status
+  );
+  static readonly screenSize = createSelector(
+    this.selector,
+    (state) => state.screenSize
+  );
 }

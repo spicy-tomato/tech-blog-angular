@@ -1,0 +1,5 @@
+<main *ngrxLet="posts$ as posts">
+  <div *ngFor="let post of posts; first as first" class="mb-2">
+    <app-post-card [post]="post" [allCardNavigate]="false"></app-post-card>
+  </div>
+</main>

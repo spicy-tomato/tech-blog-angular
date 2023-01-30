@@ -1,0 +1,11 @@
+<app-topic-card
+  *ngFor="let metaData of userData; first as first"
+  [class.mt-4]="!first"
+>
+  <header>
+    <h3 class="text-base">{{ metaData.key }}</h3>
+  </header>
+  <div class="p-4 pb-0">
+    <tui-editor-socket [content]="metaData.value"></tui-editor-socket>
+  </div>
+</app-topic-card>

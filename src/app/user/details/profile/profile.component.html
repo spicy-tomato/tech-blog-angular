@@ -1,0 +1,77 @@
+<div class="wrapper">
+  <div class="max-w-5xl mx-auto pt-8 md:px-2 md:pt-16 lg:px-4">
+    <header
+      *ngrxLet="user$ as user"
+      class="mt-2 bg-white rounded-lg shadow-card-border"
+    >
+      <ng-container *ngIf="user; else skeleton">
+        <div
+          *ngrxLet="screenSize$ as screenSize"
+          class="relative flex px-3 -translate-y-9 md:justify-center md:-translate-y-14"
+        >
+          <app-avatar
+            [user]="user"
+            [padding]="true"
+            [size]="screenSize === null || screenSize === 'sm' ? 'l' : 'xl'"
+          ></app-avatar>
+          <div
+            class="absolute right-0 -bottom-4 flex justify-end !pl-0 !pb-0 p-3 sm:p-4 md:bottom-0 lg:p-6"
+          >
+            <button tuiButton>Follow</button>
+            <button
+              tuiIconButton
+              icon="tuiIconMoreHorLarge"
+              appearance="icon"
+              class="ml-2"
+            ></button>
+          </div>
+        </div>
+
+        <div class="p-3 sm:p-4 md:text-center">
+          <h1 class="text-2xl font-bold">{{ user.fullName }}</h1>
+          <p class="mt-3 mx-auto text-base md:max-w-[75%]">
+            Founder of Scqr Inc. (scqr.net) An ICT designer/developer and a
+            security monk. Trying "a cool brain and a warm heart". Interested:
+            Social relationships and issues. OpenBSD/Rust etc.
+          </p>
+          <div
+            class="meta-data flex mt-4 text-sm text-gray-600 md:justify-center"
+          >
+            <div class="flex items-center">
+              <i class="fa-solid fa-cake-candles text-xl mr-2.5"></i>
+              Joined on {{ user.joinedDate | date : 'mediumDate' }}
+            </div>
+            <div>
+              <a
+                tuiLink
+                [href]="user.email | mailto"
+                icon="tuiIconMailLarge"
+                iconAlign="left"
+              >
+                {{ user.email }}
+              </a>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-template #skeleton>
+        <div class="relative px-3">
+          <app-avatar [showSkeleton]="true" size="l"></app-avatar>
+        </div>
+
+        <div class="p-3 md:p-4">
+          <h1
+            class="tui-skeleton tui-skeleton_text tui-skeleton_short text-2xl"
+          >
+            Full name
+          </h1>
+          <p class="tui-skeleton tui-skeleton_text mt-2 text-base">
+            Introduction
+          </p>
+          <div class="tui-skeleton mt-4 text-sm">Meta data</div>
+        </div>
+      </ng-template>
+    </header>
+  </div>
+</div>

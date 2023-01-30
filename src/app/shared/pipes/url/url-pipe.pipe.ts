@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { PostSummary, User } from 'src/data/models';
+import { PostSummary, UserSummary } from 'src/data/models';
 import { GetPostResponse } from 'src/data/responses';
 
 @Pipe({
@@ -7,7 +7,7 @@ import { GetPostResponse } from 'src/data/responses';
 })
 export class UrlPipe implements PipeTransform {
   transform(
-    value: string | PostSummary | GetPostResponse | User,
+    value: string | PostSummary | GetPostResponse | UserSummary,
     urlType: 'post' | 'user' | 'tag'
   ): string {
     switch (urlType) {

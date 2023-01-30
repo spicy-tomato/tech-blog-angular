@@ -1,9 +1,14 @@
-<tui-avatar
-  [avatarUrl]="user?.image || null"
-  [text]="user?.fullName || ''"
-  [autoColor]="true"
-  [rounded]="true"
-  [size]="size"
-  [class.tui-skeleton]="showSkeleton"
-  [class.tui-skeleton_rounded]="showSkeleton"
-></tui-avatar>
+<div
+  class="bg-tui-base-04 rounded-full w-fit"
+  [ngClass]="padding ? paddingSize : ''"
+>
+  <tui-avatar
+    [avatarUrl]="user?.image || null"
+    [text]="user?.fullName || ''"
+    [autoColor]="true"
+    [rounded]="true"
+    [size]="size"
+    [class.tui-skeleton]="showSkeleton"
+    [class.tui-skeleton_rounded]="showSkeleton"
+  ></tui-avatar>
+</div>

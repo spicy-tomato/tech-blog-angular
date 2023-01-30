@@ -1,0 +1,19 @@
+:host {
+  @apply block;
+
+  section ::ng-deep > header {
+    @apply px-4 py-3 border-b font-bold;
+
+    a:not([tuiLink]):hover {
+      @apply text-blue-800;
+    }
+  }
+
+  section ::ng-deep > div > a {
+    @apply block p-4 text-base;
+
+    &:hover {
+      @apply bg-white text-blue-800;
+    }
+  }
+}

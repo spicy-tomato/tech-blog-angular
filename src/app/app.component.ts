@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppPageAction, AppState } from 'src/app/store';
 
@@ -10,7 +14,15 @@ import { AppPageAction, AppState } from 'src/app/store';
 })
 export class AppComponent {
   // CONSTRUCTOR
-  constructor(store: Store<AppState>) {
+  constructor(private readonly store: Store<AppState>) {
     store.dispatch(AppPageAction.getUserInfo());
+  }
+
+  // HOST LISTENER
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.store.dispatch(
+      AppPageAction.resize({ width: (event.target as Window).innerWidth })
+    );
   }
 }

@@ -22,6 +22,7 @@ export class PostService {
   get(params?: {
     userName?: string;
     size?: number;
+    offset?: string;
   }): Observable<Result<GetPostsResponse>> {
     return this.http.get<Result<GetPostsResponse>>(this.url, { params });
   }

@@ -3,7 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppEnv, APP_ENV } from 'src/core/config';
 import { Result } from 'src/core/data';
-import { User } from 'src/data/models';
+import { UserSummary } from 'src/data/models';
 import { LoginRequest } from 'src/data/requests';
 import { LoginResponse } from 'src/data/responses';
 
@@ -24,7 +24,11 @@ export class UserService {
     return this.http.post<Result<LoginResponse>>(this.url + 'login', request);
   }
 
-  me(): Observable<Result<User>> {
-    return this.http.get<Result<User>>(this.url + 'me');
+  me(): Observable<Result<UserSummary>> {
+    return this.http.get<Result<UserSummary>>(this.url + 'me');
+  }
+
+  getByUserName(userName: string): Observable<Result<UserSummary>> {
+    return this.http.get<Result<UserSummary>>(this.url + userName);
   }
 }

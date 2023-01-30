@@ -1,4 +1,4 @@
-import { User } from 'src/data/models/user';
+import { UserSummary } from 'src/data/models/user';
 
 export type PostSummary = {
   id: string;
@@ -6,7 +6,7 @@ export type PostSummary = {
   image?: string;
   likeCount: number;
   createdAt: Date;
-  author: User;
+  author: UserSummary;
   tags: string[];
 
   // TODO

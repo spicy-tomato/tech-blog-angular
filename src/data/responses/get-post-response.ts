@@ -1,3 +1,5 @@
+import { UserSummary } from 'src/data/models';
+
 export type GetPostResponse = {
   id: string;
   title: string;
@@ -9,11 +11,6 @@ export type GetPostResponse = {
   trendingPoint: number;
   createdAt: Date;
   updatedAt: Date;
-  author: {
-    fullName: string;
-    userName: string;
-    email: string;
-    image: string;
-  };
+  author: UserSummary;
   tags: string[];
 };

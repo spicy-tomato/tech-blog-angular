@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { TuiAvatarComponent } from '@taiga-ui/kit';
-import { User } from 'src/data/models';
+import { UserSummary } from 'src/data/models';
 
 @Component({
   selector: 'app-avatar',
@@ -10,7 +10,26 @@ import { User } from 'src/data/models';
 })
 export class AvatarComponent {
   // INPUT
-  @Input() user?: User;
+  @Input() user?: UserSummary | null;
+  @Input()
+  get size(): TuiAvatarComponent['size'] {
+    return this._size;
+  }
+  set size(value: TuiAvatarComponent['size']) {
+    this._size = value;
+    if (['xl', 'xxl'].includes(value)) {
+      this.paddingSize = 'p-2';
+    } else {
+      this.paddingSize = 'p-1';
+    }
+  }
+
+  @Input() padding = false;
   @Input() showSkeleton = false;
-  @Input() size: TuiAvatarComponent['size'] = 's';
+
+  // PUBLIC PROPERTIES
+  paddingSize: 'p-1' | 'p-2' = 'p-1';
+
+  // PRIVATE PROPERTIES
+  _size: TuiAvatarComponent['size'] = 's';
 }

@@ -14,6 +14,9 @@ export class AppEffects {
     return this.actions$.pipe(
       ofType(AppPageAction.getUserInfo),
       mergeMap(() => {
+        if (!this.tokenService.get()) {
+          return of(AppApiAction.noCacheUserInfo());
+        }
         return this.userService.me().pipe(
           map(({ data }) => AppApiAction.getUserInfoSuccessful({ user: data })),
           catchError(() => of(AppApiAction.getUserInfoFailed()))

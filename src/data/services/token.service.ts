@@ -5,9 +5,6 @@ import { LocalStorageKeyConstant } from 'src/data/constants';
   providedIn: 'root',
 })
 export class TokenService {
-  // CONSTRUCTOR
-  constructor() {}
-
   // PUBLIC METHODS
   get(): string | null {
     return window.localStorage.getItem(LocalStorageKeyConstant.ACCESS_TOKEN);

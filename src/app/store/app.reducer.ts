@@ -26,6 +26,10 @@ export const appReducer = createReducer(
     ...state,
     screenSize: ResponsiveHelper.getResponsiveSize(width),
   })),
+  on(AppApiAction.noCacheUserInfo, (state) => ({
+    ...state,
+    status: 'success',
+  })),
   on(AppApiAction.getUserInfoSuccessful, (state, { user }) => ({
     ...state,
     user,

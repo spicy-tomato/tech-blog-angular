@@ -75,8 +75,9 @@
                   <li class="mb-2 pb-2 border-b">
                     <a
                       tuiButton
-                      size="l"
+                      (click)="onClickDropdownItem()"
                       [routerLink]="user | url : 'user'"
+                      size="l"
                       class="list-item username w-full"
                     >
                       <span class="block mt-1">
@@ -93,6 +94,7 @@
                   >
                     <a
                       tuiButton
+                      (click)="onClickDropdownItem()"
                       [routerLink]="link.url"
                       class="list-item w-full"
                     >

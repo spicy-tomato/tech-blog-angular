@@ -1,7 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TuiDestroyService } from '@taiga-ui/cdk';
-import { tuiButtonOptionsProvider, TuiDurationOptions, tuiFadeIn } from '@taiga-ui/core';
+import {
+  tuiButtonOptionsProvider,
+  TuiDurationOptions,
+  tuiFadeIn,
+} from '@taiga-ui/core';
 import { takeUntil } from 'rxjs';
 import { AppSelector, AppState } from 'src/app/store';
 
@@ -72,5 +76,9 @@ export class TopBarComponent {
   // PUBLIC METHODS
   toggleSidebar(open: boolean): void {
     this.openSidebar = open;
+  }
+
+  onClickDropdownItem(): void {
+    this.openDropdown = false;
   }
 }

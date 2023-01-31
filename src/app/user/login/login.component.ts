@@ -30,8 +30,7 @@ export class LoginComponent {
   // PUBLIC METHODS
   login(): void {
     if (this.form.valid) {
-      const { ...loginForm } = this.form.value;
-      this.store.login(loginForm);
+      this.store.login(this.form.getRawValue());
     }
   }
 

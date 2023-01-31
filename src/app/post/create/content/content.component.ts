@@ -107,7 +107,7 @@ export class ContentComponent {
   }
 
   publish(mode: PostMode): void {
-    this.store.publish({ ...this.form.value, mode });
+    this.store.publish({ ...this.form.getRawValue(), mode });
   }
 
   // PRIVATE METHODS

@@ -24,7 +24,7 @@ import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify';
 import { appFeatureKey, appReducer } from 'src/app/store';
 import { AppEffects } from 'src/app/store/app.effects';
 import { imageLoader } from 'src/core/factories/image-loader';
-import { requiredFactory } from 'src/data/factories';
+import { emailFactory, requiredFactory } from 'src/data/factories';
 import { ImageService } from 'src/data/services/image.service';
 import { AuthInterceptor } from 'src/interceptors/auth.interceptor';
 import { AppComponent } from './app.component';
@@ -75,6 +75,7 @@ const NGRX = [
       useValue: {
         // maxlength: maxLengthFactory,
         required: requiredFactory,
+        email: emailFactory,
       },
     },
     // {

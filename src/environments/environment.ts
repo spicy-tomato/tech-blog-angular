@@ -6,7 +6,7 @@ import { AppEnv } from 'src/core/config';
 
 export const environment : AppEnv = {
   production: false,
-  baseUrl: 'https://localhost:7154/'
+  baseUrl: 'http://localhost:5000/'
 };
 
 /*

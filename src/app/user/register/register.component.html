@@ -1,6 +1,8 @@
-<section class="text-center">
-  <div class="w-full m-auto p-6 bg-white rounded-md shadow-card-border sm:w-[640px] sm:p-12">
-    <div class="mb-6">
+<section>
+  <div
+    class="w-full m-auto p-6 bg-white rounded-md shadow-card-border sm:w-[640px] sm:p-12"
+  >
+    <div class="mb-6 text-center">
       <h1 class="mb-2 text-2xl font-bold md:text-3xl">
         Welcome to DEV Community 👩‍💻👨‍💻
       </h1>
@@ -17,11 +19,103 @@
       </button>
     </div>
     <div
-      class="relative my-4 text-sm after:contents-[''] after:absolute after:top-1/2 after:w-full after:block after:border"
+      class="relative my-4 text-sm text-center after:contents-[''] after:absolute after:top-1/2 after:w-full after:block after:border"
     >
       <span class="relative px-2 bg-white z-10">
         Already have an account? <a tuiLink routerLink="/login">Log in</a>.
       </span>
     </div>
+
+    <form [formGroup]="form" class="text-base">
+      <div class="tui-form__row">
+        <label>
+          Username
+          <tui-input
+            formControlName="userName"
+            [tuiTextfieldLabelOutside]="true"
+            tuiTextfieldSize="m"
+          ></tui-input>
+          <tui-error
+            formControlName="userName"
+            [error]="[] | tuiFieldError | async"
+          ></tui-error>
+        </label>
+      </div>
+      <div class="tui-form__row">
+        <label>
+          Full name
+          <tui-input
+            formControlName="fullName"
+            [tuiTextfieldLabelOutside]="true"
+            tuiTextfieldSize="m"
+          ></tui-input>
+          <tui-error
+            formControlName="fullName"
+            [error]="[] | tuiFieldError | async"
+          ></tui-error>
+        </label>
+      </div>
+      <div class="tui-form__row">
+        <label>
+          Email
+          <tui-input
+            formControlName="email"
+            [tuiTextfieldLabelOutside]="true"
+            tuiTextfieldSize="m"
+          >
+            <input tuiTextfield type="email" />
+          </tui-input>
+          <tui-error
+            formControlName="email"
+            [error]="[] | tuiFieldError | async"
+          ></tui-error>
+        </label>
+      </div>
+      <div class="tui-form__row">
+        <label>
+          Password
+          <tui-input-password
+            formControlName="password"
+            [tuiTextfieldLabelOutside]="true"
+            tuiTextfieldSize="m"
+          ></tui-input-password>
+          <tui-error
+            formControlName="password"
+            [error]="[] | tuiFieldError | async"
+          ></tui-error>
+        </label>
+      </div>
+      <div class="tui-form__row">
+        <label>
+          Confirm Password
+          <tui-input-password
+            formControlName="confirmPassword"
+            [tuiTextfieldLabelOutside]="true"
+            tuiTextfieldSize="m"
+          ></tui-input-password>
+          <tui-error
+            formControlName="confirmPassword"
+            [error]="[] | tuiFieldError | async"
+          ></tui-error>
+        </label>
+      </div>
+
+      <div *ngrxLet="status$ as status" class="tui-form__row">
+        <button
+          tuiButton
+          (click)="register()"
+          [showLoader]="status === 'loading'"
+          [disabled]="form.invalid || form.status === 'PENDING'"
+          size="m"
+        >
+          Register
+        </button>
+        <tui-error
+          [error]="form.errors?.['validator']"
+          class="mt-4 text-center"
+          class="mt-4 text-center"
+        ></tui-error>
+      </div>
+    </form>
   </div>
 </section>

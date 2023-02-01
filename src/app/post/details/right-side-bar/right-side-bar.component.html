@@ -49,7 +49,7 @@
   </div>
 
   <ng-container *ngrxLet="morePosts$ as morePosts">
-    <div *ngIf="post && morePosts.length">
+    <div *ngIf="post && morePosts.length" class="overflow-hidden">
       <header class="px-4 py-3 font-bold border-b border-gray-100">
         More from
         <a tuiLink [routerLink]="post | url : 'user'" class="text-xl">

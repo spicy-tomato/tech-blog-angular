@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { tap } from 'rxjs';
+import { StringHelper } from 'src/core/helpers';
 import { LoginStore } from './login.store';
 
 @Component({
@@ -30,7 +31,11 @@ export class LoginComponent {
   // PUBLIC METHODS
   login(): void {
     if (this.form.valid) {
-      this.store.login(this.form.getRawValue());
+      const { remember, validator, ...registerForm } = this.form.getRawValue();
+      this.store.login({
+        ...registerForm,
+        password: StringHelper.md5(registerForm.password),
+      });
     }
   }
 
